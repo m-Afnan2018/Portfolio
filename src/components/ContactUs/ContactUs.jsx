@@ -3,7 +3,7 @@ import style from './ContactUs.module.css'
 
 const ContactUs = () => {
   return (
-    <div>ContactUs</div>
+    <div id='contactUs'>ContactUs</div>
   )
 }
 

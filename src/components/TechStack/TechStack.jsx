@@ -3,7 +3,7 @@ import style from './TechStack.module.css'
 
 const TechStack = () => {
   return (
-    <div>TechStack</div>
+    <div id='techStack'>TechStack</div>
   )
 }
 

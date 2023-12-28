@@ -1,0 +1,25 @@
+.Navbar{
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Name{
+    display: flex;
+    gap: 1rem;
+}
+
+.Name>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: -0.25rem;
+}
+
+.Name>div>img{
+    height: 2.5rem;
+}
+
+.Name>div>p{
+    font-size: 1.5rem;
+}

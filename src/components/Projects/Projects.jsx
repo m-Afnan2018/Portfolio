@@ -3,7 +3,7 @@ import style from './Project.module.css'
 
 const Projects = () => {
   return (
-    <div>Projects</div>
+    <div id='projects'>Projects</div>
   )
 }
 
