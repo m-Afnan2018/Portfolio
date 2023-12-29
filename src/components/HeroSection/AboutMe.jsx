@@ -38,7 +38,10 @@ const AboutMe = () => {
             <div>
                 <p>I am <span className='role'></span></p>
             </div>
-            <p>I’m a software developer and here is my portfolio website. Here you’ll learn about my journey as a software developer.</p>
+            <div>
+                <p>I’m a software developer and here is my portfolio website.</p>
+                <p> Here you’ll learn about my journey as a software developer.</p>
+            </div>
             <div className={style.btn}>
                 Hire Me
             </div>
