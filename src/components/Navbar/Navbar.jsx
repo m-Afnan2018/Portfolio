@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import style from './Navbar.module.css'
-import lettera from '../../assets/images/letter-a.png'
-import letterm from '../../assets/images/letter-m.png'
+import lettera from '../../assets/images/userAssets/letter-a.png'
+import letterm from '../../assets/images/userAssets/letter-m.png'
 import { Link } from 'react-scroll'
 import { FiMenu, FiX } from "react-icons/fi";
 
