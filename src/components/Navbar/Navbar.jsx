@@ -3,7 +3,7 @@ import style from './Navbar.module.css'
 import lettera from '../../assets/images/letter-a.png'
 import letterm from '../../assets/images/letter-m.png'
 import { Link } from 'react-scroll'
-import { FiMenu } from "react-icons/fi";
+import { FiMenu, FiX } from "react-icons/fi";
 
 const Navbar = () => {
     const [showOverLay, setShowOverLay] = useState(false)
@@ -31,10 +31,12 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className={style.NavOverlay}>
-                <FiMenu onClick={() => setShowOverLay(!showOverLay)} />
                 {
-                    showOverLay &&
-                    <div>
+                    <div style={{ right: showOverLay ? '0px' : '-200px' }}>
+                        <div onClick={() => setShowOverLay(false)} >
+                            <FiX/>
+                            <p>Close</p>
+                        </div>
                         <Link to="projects" smooth={true} duration={500}>
                             Projects
                         </Link>
@@ -46,6 +48,7 @@ const Navbar = () => {
                         </Link>
                     </div>
                 }
+                <FiMenu  onClick={() => setShowOverLay(true)} style={{cursor: 'pointer', display: showOverLay ? 'none' : 'block' }}/>
             </div>
         </div>
     )
