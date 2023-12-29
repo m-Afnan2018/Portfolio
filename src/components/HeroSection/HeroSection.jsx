@@ -6,8 +6,11 @@ import Image from './Image'
 const HeroSection = () => {
     return (
         <div className={style.HeroSection}>
-            <AboutMe/>
-            <Image/>
+            <div>
+                <AboutMe/>
+                <Image/>
+            </div>
+            <p>Afnan</p>
         </div>
     )
 }

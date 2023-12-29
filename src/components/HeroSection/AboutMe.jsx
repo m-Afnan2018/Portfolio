@@ -32,15 +32,14 @@ const AboutMe = () => {
         };
     }, []);
     return (
-        <div>
+        <div className={style.AboutMe}>
             <h3>Hi! Mohammad Afnan</h3>
-
             <div>
-                <p>I am <span className='role'></span></p>
+                <p className={style.intro}>I am <span className={`${style.role} role`}></span></p>
             </div>
-            <div>
+            <div className={style.para}>
                 <p>I’m a software developer and here is my portfolio website.</p>
-                <p> Here you’ll learn about my journey as a software developer.</p>
+                <p>Here you’ll learn about my journey as a software developer.</p>
             </div>
             <div className={style.btn}>
                 Hire Me
