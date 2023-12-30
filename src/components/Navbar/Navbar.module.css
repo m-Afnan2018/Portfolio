@@ -75,9 +75,21 @@
     }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 481px) and (max-width: 767px) {
     .Nav{
         display: None;
+    }
+}
+
+@media (max-width: 480px){
+    .Nav{
+        display: None;
+    }
+    .Name>div>p{
+        display: None;
+    }
+    .Name{
+        gap: 0px;
     }
 }
 
