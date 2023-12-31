@@ -46,15 +46,16 @@
 }
 
 .NavOverlay>div{
+    filter: drop-shadow(-5px 0px 20px black);
     position: fixed;
     top: 0;
     bottom: 0;
-    padding: 2rem;
-    background-color: rgba(129, 131, 131, 0.158);
+    padding: 2rem 5rem 2rem 2rem;
+    background-color: #e84949;
     display: flex;
-    z-index: 5;
+    z-index: 15;
     flex-direction: column;
-    gap: 1rem;
+    gap: 3rem;
     transition: all ease-in-out 200ms;
 }
 
@@ -63,10 +64,20 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
+    gap: 2rem;
 }
 
 .NavOverlay>div>div>p{
     margin: 0;
+}
+.NavOverlay>div>div{
+    color: white;
+    font-weight: 500;
+}
+
+.NavOverlay>div>a{
+    color: white;
+    font-weight: 500;
 }
 
 @media (min-width: 768px) {

@@ -32,18 +32,18 @@ const Navbar = () => {
             </div>
             <div className={style.NavOverlay}>
                 {
-                    <div style={{ right: showOverLay ? '0px' : '-200px' }}>
+                    <div style={{ right: showOverLay ? '0px' : '-250px' }}>
                         <div onClick={() => setShowOverLay(false)} >
                             <FiX/>
                             <p>Close</p>
                         </div>
-                        <Link to="projects" smooth={true} duration={500}>
+                        <Link to="projects" smooth={true} duration={500} onClick={()=>setShowOverLay(false)}>
                             Projects
                         </Link>
-                        <Link to="techStack" smooth={true} duration={500}>
+                        <Link to="techStack" smooth={true} duration={500} onClick={()=>setShowOverLay(false)}>
                             Skills
                         </Link>
-                        <Link to="contactUs" smooth={true} duration={500}>
+                        <Link to="contactUs" smooth={true} duration={500} onClick={()=>setShowOverLay(false)}>
                             Contact me
                         </Link>
                     </div>
