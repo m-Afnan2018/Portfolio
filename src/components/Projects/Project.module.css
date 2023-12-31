@@ -1,0 +1,278 @@
+.Projects {
+    background-color: rgb(231, 231, 231);
+}
+
+.Projects>div {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+}
+
+.Projects>h3 {
+    color: #e84949;
+    font-size: 90px;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.singleProject {
+    width: 90%;
+    height: 550px;
+    background-size: cover;
+    position: relative;
+    box-shadow: 0px 0px 40px #1f1f1f;
+}
+
+.projectLeft {
+    margin-left: 10%;
+}
+
+.projectRight {
+    margin-right: 10%;
+}
+
+.singleProject::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #1f1f1f9a;
+    z-index: 0;
+    /* transform: scaleX(1); */
+}
+
+.singleProject::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #343d68, #343d68be, #343d687c);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: all 0.4s;
+    z-index: 1;
+}
+
+.singleProject:hover::before {
+    transform: scaleX(1);
+}
+
+.number {
+    position: absolute;
+    font-size: 200px;
+    font-weight: 600;
+    color: white;
+    z-index: 10;
+    /* display:none; */
+    opacity: 0;
+}
+
+.singleProject:hover .number {
+    /* display:block; */
+    opacity: 1;
+}
+
+.numberRight {
+    right: -40px;
+    top: -45px;
+}
+
+.numberLeft {
+    left: -40px;
+    top: -45px;
+}
+
+.card {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 2em;
+    bottom: 20%;
+    z-index: 5;
+    gap: 1em;
+    transition: all 0.4s;
+}
+
+
+.cardLeft {
+    right: 10%;
+    align-items: flex-end;
+}
+
+.cardRight {
+    left: 10%;
+}
+
+.cardLeft>div {
+    justify-content: flex-end;
+}
+
+.skills {
+    width: 60%;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+
+}
+
+.skills>img {
+    width: 40px;
+}
+
+.heading {
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    line-height: 3rem;
+}
+
+.description {
+    width: 70%;
+    font-size: 16px;
+    font-style: italic;
+}
+
+
+.buttons {
+    display: flex;
+    gap: 0.9rem;
+    align-items: center;
+}
+
+.buttons>button:hover {
+    border: none;
+}
+
+.buttons>button {
+    background-color: #e84949;
+    width: fit-content;
+    color: white;
+    padding: 0.8rem 2.3rem;
+    box-shadow: 5px 5px 7px 0px #0000003f;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.5s;
+    font-weight: 500;
+    border: solid 3px transparent;
+    position: relative;
+    z-index: 1;
+}
+
+.buttons>button::before {
+    content: "";
+    position: absolute;
+    background-color: #fff;
+    top: 0px;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: all 0.8s;
+}
+
+.buttons>button:hover::before {
+    transform: scaleX(1);
+}
+
+.buttons>button:hover {
+    border: solid 3px #e84949;
+    color: black;
+}
+
+.icon {
+    cursor: pointer;
+    color: white;
+    font-size: 35px;
+    transition: all 0.4s;
+}
+
+.icon:hover {
+    color: #e84949;
+}
+
+.singleProject:hover .card {
+    transform: scale(1.1);
+}
+
+@media (max-width: 1280px) {
+    .Projects>div {
+        padding: 5px;
+        margin: 10px;
+        gap: 60px;
+    }
+
+    .Projects>h3 {
+        font-size: 40px;
+    }
+
+    .singleProject {
+        width: 100%;
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .projectLeft {
+        margin-left: 0%;
+    }
+
+    .projectRight {
+        margin-right: 0%;
+    }
+
+    .number {
+        display: none;
+    }
+
+    .card {
+        width: 100%;
+        scale: 0.6;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+    }
+
+
+    .cardLeft {
+        right: 10%;
+        align-items: flex-start;
+    }
+
+    .cardRight {
+        right: 10%;
+    }
+
+    .cardLeft>div {
+        justify-content: flex-start;
+    }
+
+    .skills {
+        width: 100%;
+
+    }
+
+    .skills>img {
+        width: 35px;
+    }
+
+    .heading {
+
+        font-size: 40px;
+        width: 100%;
+    }
+
+    .description {
+        width: 100%;
+    }
+}

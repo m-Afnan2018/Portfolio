@@ -1,5 +1,6 @@
 .HeroSection {
-    padding: 50px 50px;
+    margin-bottom: -36px;
+    padding: 0px 50px;
     display: flex;
     flex-direction: column;
 }
