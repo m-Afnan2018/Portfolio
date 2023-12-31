@@ -31,6 +31,7 @@ const TechStack = () => {
       </div>
       {/* Right Div */}
       <div className={style.skills}>
+        <img className={style.skillBlob} src="https://res.cloudinary.com/di1qrcflg/image/upload/v1704002443/blob_vector_zq3nmk.png" />
         {skillsImages.map((image) => (
           <img className={style.skillImg} src={image.url} alt={image.alt} />
         ))}
