@@ -1,0 +1,36 @@
+.Footer {
+
+    position: relative;
+    margin-top: -1px;
+    background-color: #343d68;
+    padding: 5rem;
+
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: #535c87;
+    user-select: none;
+    font-size: 5em;
+}
+
+.link {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.link>a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.6s;
+}
+
+.link>a:hover{
+    color: #e84949;
+}

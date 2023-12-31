@@ -4,7 +4,7 @@ import skillsImages from "./skillsImages";
 // import '../../assets/stack/Bash.svg'
 const TechStack = () => {
     return (
-        <div className={style.techStack}>
+        <div className={style.techStack} id="techStack">
             {/* Left div */}
             <div className={style.description}>
                 <h2>
