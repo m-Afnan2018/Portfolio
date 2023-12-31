@@ -1,10 +1,8 @@
 .Footer {
-
     position: relative;
     margin-top: -1px;
     background-color: #343d68;
-    padding: 5rem;
-
+    padding: 6rem;
     display: flex;
     gap: 1rem;
     justify-content: space-between;
@@ -26,11 +24,53 @@
 }
 
 .link>a {
+    cursor: pointer;
     color: white;
     text-decoration: none;
     transition: all 0.6s;
 }
 
-.link>a:hover{
+.link>a:hover {
     color: #e84949;
+}
+
+
+.icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.icons>svg {
+    cursor: pointer;
+    color: white;
+    font-size: 35px;
+    transition: all 0.4s;
+}
+
+.icons>svg:hover {
+    color: #e84949;
+}
+
+@media (max-width: 768px) {
+    .Footer {
+        align-items: flex-start;
+        gap: 3rem;
+        padding: 5rem;
+    }
+
+    .name {
+        font-size: 3em;
+    }
+
+    .link{
+        flex-direction: column;
+    }
+
+    .icons{
+        flex-wrap: wrap;
+    }
+
+    .icons>svg{
+        font-size: 1.5rem;
+    }
 }

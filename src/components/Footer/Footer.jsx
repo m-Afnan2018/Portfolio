@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <div className={style.Footer}>
             <div>
-                <div className={style.name}>Mohammad Afnan</div>
+                <div className={style.name}>Afnan</div>
                 <div className={style.link}>
                     <Link to="projects" smooth={true} duration={500}>
                         Projects
@@ -20,7 +20,7 @@ const Footer = () => {
                     </Link>
                 </div>
             </div>
-            <div>
+            <div className={style.icons}>
                 <FaLinkedin />
                 <FaGithub />
                 <FaTwitter />
