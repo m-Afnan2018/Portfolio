@@ -147,6 +147,10 @@
     align-items: center;
 }
 
+.cardLeft>div:nth-child(4){
+    flex-direction:row-reverse;
+}
+
 .buttons>button:hover {
     border: none;
 }
@@ -275,4 +279,9 @@
     .description {
         width: 100%;
     }
+
+    .cardLeft>div:nth-child(4){
+        flex-direction:row;
+    }
+    
 }
