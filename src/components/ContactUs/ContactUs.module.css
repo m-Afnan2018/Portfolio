@@ -45,6 +45,13 @@
     border: none;
 }
 
+.form>form>input:focus{
+    outline: none;
+}
+.form>form>textarea:focus{
+    outline: none;
+}
+
 .form>form>textarea {
     width: 100%;
     font-size: 18px;
@@ -138,7 +145,7 @@
     position: absolute;
     inset: 0px;
     border-radius: 50%;
-    border: 5px solid #FFF;
+    border: 5px solid  #e84949;
     animation: prixClipFix 2s linear infinite;
 }
 

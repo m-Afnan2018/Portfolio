@@ -3,7 +3,6 @@ import style from './Project.module.css'
 import { FaGithub, FaLink  } from "react-icons/fa";
 
 const SingleProject = ({ index, data }) => {
-    console.log(index)
     return (
         <div className={`${index & 1 ? style.projectLeft : style.projectRight} ${style.singleProject}`} style={{backgroundImage: `url(${data.image})`}}>
             <div className={`${index & 1 ? style.numberLeft : style.numberRight} ${style.number}`}>0{index+1}</div>
@@ -12,7 +11,7 @@ const SingleProject = ({ index, data }) => {
                 <div className={style.skills}>
                     {
                         data.techStack.map((tech, index) => (
-                            <img src={tech} alt="" key={index}/>
+                            <img loading="lazy" src={tech} alt="" key={index}/>
                         ))
                     }
                 </div>

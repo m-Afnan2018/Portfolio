@@ -11,13 +11,13 @@ const Image = () => {
   return (
     <div className={style.Image}>
         <div>
-            <img src={user} alt='user'/>
+            <img loading="lazy" src={user} alt='user'/>
         </div>
-        <img className={style.circle} src={circle} alt='circle'/>
-        <img className={style.cube} src={cube} alt='cube'/>
-        <img className={style.dots} src={dots} alt='dots'/>
-        <img className={style.plus} src={plus} alt='plus'/>
-        <img className={style.zigzag} src={zigzag} alt='zigzag'/>
+        <img loading="lazy" className={style.circle} src={circle} alt='circle'/>
+        <img loading="lazy" className={style.cube} src={cube} alt='cube'/>
+        <img loading="lazy" className={style.dots} src={dots} alt='dots'/>
+        <img loading="lazy" className={style.plus} src={plus} alt='plus'/>
+        <img loading="lazy" className={style.zigzag} src={zigzag} alt='zigzag'/>
     </div>
   )
 }

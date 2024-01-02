@@ -16,34 +16,36 @@ import Next from '../images/stack/Next.svg'
 import NextJsCircle from '../images/stack/NextJsCircle.png'
 import NodeJs from '../images/stack/NodeJs.svg'
 import React from '../images/stack/React.png'
+import Redux from '../images/stack/Redux.svg'
 import Saas from '../images/stack/Saas.svg'
 import Tailwind from '../images/stack/Tailwind.png'
 import Typescript from '../images/stack/Typescript.svg'
 import Vercel from '../images/stack/Vercel.svg'
 
 const skillImage = {
-    Bash,
-    Bootstrap,
-    ChartJs,
+    HTML,
     CSS,
-    Docker,
+    Javascript,
+    React,
+    NodeJs,
+    Next,
+    Redux,
+    Tailwind,
+    Bootstrap,
+    MaterialUI,
     Express,
     Git,
     Github,
     Graphql,
-    HTML,
-    Javascript,
-    K8s,
-    MaterialUI,
     MongoDB,
-    Next,
+    Vercel,
+    ChartJs,
+    Bash,
+    Docker,
+    K8s,
     NextJsCircle,
-    NodeJs,
-    React,
     Saas,
-    Tailwind,
     Typescript,
-    Vercel
 }
 
 export default skillImage;

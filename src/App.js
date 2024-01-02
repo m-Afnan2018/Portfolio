@@ -1,3 +1,4 @@
+import { ToastContainer } from 'react-toastify';
 import './App.css';
 import ContactUs from './components/ContactUs/ContactUs';
 import Footer from './components/Footer/Footer';
@@ -15,6 +16,18 @@ function App() {
             <TechStack/>
             <ContactUs/>
             <Footer/>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable={false}
+                pauseOnHover
+                theme="light"
+            />
         </div>
     );
 }

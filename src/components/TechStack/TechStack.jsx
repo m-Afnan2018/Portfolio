@@ -1,8 +1,10 @@
 import React from "react";
 import style from "./TechStack.module.css";
-import skillsImages from "./skillsImages";
-// import '../../assets/stack/Bash.svg'
+// import skillsImages from "./skillsImages";
+import skillImage from "../../assets/data/skillImage";
+
 const TechStack = () => {
+    const exclude = ['NextJsCircle', 'Saas', 'Typescript']
     return (
         <div className={style.techStack} id="techStack">
             {/* Left div */}
@@ -31,10 +33,17 @@ const TechStack = () => {
             </div>
             {/* Right Div */}
             <div className={style.skills}>
-                <img className={style.skillBlob} src="https://res.cloudinary.com/di1qrcflg/image/upload/v1704002443/blob_vector_zq3nmk.png" alt="blob" />
-                {skillsImages.map((image) => (
-                    <img className={style.skillImg} src={image.url} alt={image.alt} />
-                ))}
+                <img className={style.skillBlob} loading='lazy' src="https://res.cloudinary.com/di1qrcflg/image/upload/v1704002443/blob_vector_zq3nmk.png" alt="blob" />
+                {
+                    Object.keys(skillImage).map((key) => (
+                        !exclude.includes(key) && 
+                        <img className={style.skillImg} loading="lazy" key={key} src={skillImage[key]} alt={key} />
+                    ))
+
+                }
+                {/* {skillsImages.map((image, index) => (
+                    <img className={style.skillImg} key={index} src={image.url} alt={image.alt} />
+                ))} */}
             </div>
         </div>
     );

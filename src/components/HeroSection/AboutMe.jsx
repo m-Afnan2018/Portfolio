@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import style from './HeroSection.module.css'
 import Typed from 'typed.js';
+import { Link } from 'react-scroll';
 
 const AboutMe = () => {
 
@@ -41,9 +42,11 @@ const AboutMe = () => {
                 <p>I’m a software developer and here is my portfolio website.</p>
                 <p>Here you’ll learn about my journey as a software developer.</p>
             </div>
-            <div className={style.btn}>
-                Hire Me
-            </div>
+            <Link to="contactUs" smooth={true} duration={500}>
+                <div className={style.btn}>
+                    Hire Me
+                </div>
+            </Link>
         </div>
     )
 }
