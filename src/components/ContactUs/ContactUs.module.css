@@ -18,6 +18,13 @@
     text-transform: capitalize;
 }
 
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
+}
+
 .form>form {
     display: flex;
     flex-direction: column;
@@ -89,6 +96,80 @@
     color: black;
 }
 
+.thanks {
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    color: #343d68aa;
+}
+
+.thanks>svg {
+    font-size: 5rem;
+}
+
+.thanks>h1 {
+    font-size: 3rem;
+    text-transform: capitalize;
+}
+
+.thanks>h3 {
+    font-size: 1.5rem;
+}
+
+.thanks>p {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 1s linear infinite
+}
+
+.loader::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 5px solid #FFF;
+    animation: prixClipFix 2s linear infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes prixClipFix {
+    0% {
+        clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0)
+    }
+
+    25% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0)
+    }
+
+    50% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
+    }
+
+    75% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%)
+    }
+
+    100% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0)
+    }
+}
+
 @media (max-width: 768px) {
     .contactUs {
         padding: 0 2rem;
@@ -111,5 +192,21 @@
     .form>form>button {
         margin: auto;
         margin-top: 5px;
+    }
+
+    .thanks>svg {
+        font-size: 3rem;
+    }
+    
+    .thanks>h1 {
+        font-size: 1.5rem;
+    }
+    
+    .thanks>h3 {
+        font-size: 0.85rem;
+    }
+    
+    .thanks>p {
+        font-size: 0.85rem;
     }
 }
