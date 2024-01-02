@@ -26,7 +26,7 @@ const Form = ({ setSubmitted }) => {
         setLoader(true);
         e.preventDefault();
 
-        await fetch("https://formsubmit.co/ajax/m.afnan2018@gmail.com", {
+        await fetch(`https://formsubmit.co/ajax/${process.env.REACT_APP_MAIL_TOKEN}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
