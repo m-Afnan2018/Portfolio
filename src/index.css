@@ -2,12 +2,14 @@ body {
   margin: 0;
   font-family: 'Be Vietnam Pro',
     sans-serif;
-  font-weight: 100;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+    font-weight: 100;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-*{
+  *{
+  font-family: 'Be Vietnam Pro',
+    sans-serif;
   padding: 0;
   margin: 0;
   box-sizing: border-box;

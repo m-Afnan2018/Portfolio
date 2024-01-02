@@ -1,0 +1,115 @@
+.contactUs {
+    margin: auto;
+    padding: 0 6rem;
+    width: 100%;
+    font-weight: 200;
+    background-color: rgb(231, 231, 231);
+}
+
+.contactUs>h1 {
+    font-size: 5em;
+    color: #e84949;
+    padding-top: 2rem;
+}
+
+.contactUs>p {
+    font-size: 3rem;
+    color: #343d68aa;
+    text-transform: capitalize;
+}
+
+.form>form {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    width: 70%;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.form>form>input {
+    width: 100%;
+    height: 42px;
+    padding: 0 2rem;
+    font-size: 18px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px #1f1f1f;
+    font-weight: 500;
+    border: none;
+}
+
+.form>form>textarea {
+    width: 100%;
+    font-size: 18px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px #1f1f1f;
+    font-weight: 500;
+    border: none;
+    height: auto;
+    padding: 0 2rem;
+    padding-top: 1rem;
+}
+
+.form>form>button {
+    margin-top: 5px;
+    background-color: #e84949;
+    width: fit-content;
+    color: white;
+    padding: 0.8rem 2.3rem;
+    box-shadow: 5px 5px 7px 0px #0000003f;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.5s;
+    font-weight: 500;
+    border: solid 3px transparent;
+    position: relative;
+    z-index: 1;
+}
+
+.form>form>button::before {
+    content: "";
+    position: absolute;
+    background-color: #fff;
+    top: 0px;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: all 0.8s;
+}
+
+.form>form>button:hover::before {
+    transform: scaleX(1);
+}
+
+.form>form>button:hover {
+    border: solid 3px #e84949;
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .contactUs {
+        padding: 0 2rem;
+    }
+
+    .contactUs>h1 {
+        font-size: 2.5em;
+    }
+
+    .contactUs>p {
+        font-size: 1.25rem;
+    }
+
+    .form>form {
+        width: 100%;
+        margin: 0 auto;
+        padding: 2rem 0;
+    }
+
+    .form>form>button {
+        margin: auto;
+        margin-top: 5px;
+    }
+}
