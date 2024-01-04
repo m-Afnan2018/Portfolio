@@ -12,14 +12,14 @@ const Navbar = () => {
     const clickOutsideRef = useRef();
     useOnClickOutside(clickOutsideRef, () => setShowOverLay(false));
 
-    
+
     const isVisible = useScrollVisibility();
     const scrollToTop = () => {
         window.scrollTo({
-          top: 0,
-          behavior: 'smooth',
+            top: 0,
+            behavior: 'smooth',
         });
-      };
+    };
 
     return (
         <div className={style.Navbar}>
@@ -64,10 +64,9 @@ const Navbar = () => {
                 }
                 <FiMenu onClick={() => setShowOverLay(true)} style={{ cursor: 'pointer', display: showOverLay ? 'none' : 'block' }} />
             </div>
-            <div onClick={scrollToTop} className={style.arrow} style={{opacity: isVisible ? 1:0}}>
-
-            <FiArrowUp/>
-            </div> 
+            <div onClick={scrollToTop} className={style.arrow} style={{ display: isVisible ? 'flex' : 'none' }}>
+                <FiArrowUp />
+            </div>
         </div>
     )
 }
