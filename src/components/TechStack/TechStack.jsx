@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./TechStack.module.css";
-// import skillsImages from "./skillsImages";
 import skillImage from "../../assets/data/skillImage";
 
 const TechStack = () => {
@@ -41,9 +40,6 @@ const TechStack = () => {
                     ))
 
                 }
-                {/* {skillsImages.map((image, index) => (
-                    <img className={style.skillImg} key={index} src={image.url} alt={image.alt} />
-                ))} */}
             </div>
         </div>
     );
