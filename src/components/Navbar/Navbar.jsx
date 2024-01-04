@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import style from './Navbar.module.css'
 import lettera from '../../assets/images/userAssets/letter-a.png'
 import letterm from '../../assets/images/userAssets/letter-m.png'
 import { Link } from 'react-scroll'
 import { FiMenu, FiX } from "react-icons/fi";
+import useOnClickOutside from '../../hooks/useOnClickOutside'
 
 const Navbar = () => {
     const [showOverLay, setShowOverLay] = useState(false)
+    const clickOutsideRef = useRef();
+    useOnClickOutside(clickOutsideRef, ()=>setShowOverLay(false));
+
     return (
         <div className={style.Navbar}>
             <div className={style.Name}>
@@ -30,7 +34,7 @@ const Navbar = () => {
                     Contact me
                 </Link>
             </div>
-            <div className={style.NavOverlay}>
+            <div className={style.NavOverlay} ref={clickOutsideRef}>
                 {
                     <div style={{ right: showOverLay ? '0px' : '-250px' }}>
                         <div onClick={() => setShowOverLay(false)} >
