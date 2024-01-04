@@ -1,51 +1,51 @@
-.Navbar{
+.Navbar {
     padding: 1rem 50px 0 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.Name{
+.Name {
     display: flex;
     gap: 1rem;
 }
 
-.Name>div{
+.Name>div {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0;
 }
 
-.Name>div>img{
+.Name>div>img {
     height: 2.5rem;
 }
 
-.Name>div>p{
+.Name>div>p {
     font-size: 1.5rem;
 }
 
-.Nav{
+.Nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap:2.5rem
+    gap: 2.5rem
 }
 
-.Nav>a{
+.Nav>a {
     cursor: pointer;
 }
 
-.Nav>a:hover{
+.Nav>a:hover {
     transition: 250ms;
     font-weight: 700;
 }
 
-.NavOverlay{
+.NavOverlay {
     position: relative;
 }
 
-.NavOverlay>div{
+.NavOverlay>div {
     filter: drop-shadow(-5px 0px 20px black);
     position: fixed;
     top: 0;
@@ -59,7 +59,7 @@
     transition: all ease-in-out 200ms;
 }
 
-.NavOverlay>div>div{
+.NavOverlay>div>div {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -67,40 +67,60 @@
     gap: 2rem;
 }
 
-.NavOverlay>div>div>p{
+.NavOverlay>div>div>p {
     margin: 0;
 }
-.NavOverlay>div>div{
+
+.NavOverlay>div>div {
     color: white;
     font-weight: 500;
 }
 
-.NavOverlay>div>a{
+.NavOverlay>div>a {
     color: white;
     font-weight: 500;
+}
+
+.arrow {
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e84949;
+    color: white;
+    cursor: pointer;
+    filter: drop-shadow(2px 4px 6px black);
+    padding: 1rem;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    transition: opacity 200ms ease;
+    z-index: 12;
 }
 
 @media (min-width: 768px) {
-    .NavOverlay{
+    .NavOverlay {
         display: None;
     }
 }
 
 @media (min-width: 481px) and (max-width: 767px) {
-    .Nav{
+    .Nav {
         display: None;
     }
 }
 
-@media (max-width: 480px){
-    .Nav{
+@media (max-width: 480px) {
+    .Nav {
         display: None;
     }
-    .Name>div>p{
+
+    .Name>div>p {
         display: None;
     }
-    .Name{
+
+    .Name {
         gap: 0px;
     }
 }
-
