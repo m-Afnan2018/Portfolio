@@ -5,7 +5,8 @@ const projectData = [
     {
         image: ProjectImage.Project1.main,
         moreImages: ProjectImage.Project1.others,
-        techStack: [skillImage.HTML, skillImage.CSS, skillImage.Javascript, skillImage.Express, skillImage.NextJsCircle],
+        techStackImages: [skillImage.HTML, skillImage.CSS, skillImage.Javascript, skillImage.Express, skillImage.NextJsCircle],
+        techStack: ['HTML', 'CSS', 'JavaScript', 'Express'],
         name: 'Tint & Orange',
         description: 'Its is a car modification copany which provide you sheets to protect your car from scratch',
         readMore: 'Its is a car modification copany which provide you sheets to protect your car from scratch',

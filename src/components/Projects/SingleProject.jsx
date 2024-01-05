@@ -10,7 +10,7 @@ const SingleProject = ({ index, data }) => {
 
                 <div className={style.skills}>
                     {
-                        data.techStack.map((tech, index) => (
+                        data.techStackImages.map((tech, index) => (
                             <img loading="lazy" src={tech} alt="" key={index}/>
                         ))
                     }
