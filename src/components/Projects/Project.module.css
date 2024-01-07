@@ -208,6 +208,55 @@
     transform: scale(1.1);
 }
 
+.ProjectModal{
+    background-color: blanchedalmond;
+    z-index: 18;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    filter: drop-shadow(2px 4px 6px black);
+    border-radius: 8px;
+}
+
+.cross{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.ProjectModal{
+    display: flex;
+}
+
+.ProjectModal>div:nth-child(1){
+    width: 70%;
+}
+
+.ProjectModal>div:nth-child(2){
+    width: 30%;
+}
+
+.image>img{
+    max-width:100%;
+    height: 80%;
+}
+
+.thumbnail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.thumbnail>img{
+    height: 10%;
+    width: 10%;
+}
+
 @media (max-width: 1280px) {
     .Projects>div {
         padding: 5px;

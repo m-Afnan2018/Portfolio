@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from './Project.module.css'
-import ReactImageGallery from 'react-image-gallery'
 import { FaGithub } from 'react-icons/fa'
+import { IoCloseCircleOutline } from "react-icons/io5";
 import { FaLink, FaYoutube } from 'react-icons/fa6'
 
-const ProjectModal = ({ data }) => {
+const ProjectModal = ({ data, setShow }) => {
+    const [image, selectImage] = useState(data.image);
     return (
         <div className={style.ProjectModal}>
-            <div>
-                <ReactImageGallery items={data.moreImages} />
+            <div className={style.image}>
+                <img src={image} alt='mainImage'/>
+                <div className={style.thumbnail}>
+                    { 
+                        data.moreImages.map((i)=>(
+                            <img src={i} onClick={()=>selectImage(i)} alt='thumbnail'/>
+                        ))
+                    }
+                </div>
             </div>
             <div className={style.information}>
                 <h1>{data.name}</h1>
@@ -35,6 +43,7 @@ const ProjectModal = ({ data }) => {
                     <FaYoutube/>
                     <FaLink/>
                 </div>
+                <IoCloseCircleOutline className={style.cross} onClick={()=>setShow(false)}/>
             </div>
         </div>
     )
