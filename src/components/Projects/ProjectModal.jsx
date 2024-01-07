@@ -13,21 +13,20 @@ const ProjectModal = ({ data, setShow }) => {
                 <div className={style.thumbnail}>
                     {
                         data.moreImages.map((i) => (
-                            <img src={i} onClick={() => selectImage(i)} alt='thumbnail' />
+                            <img className={image === i ? style.selected : ''} src={i} onClick={() => selectImage(i)} alt='thumbnail' />
                         ))
                     }
                 </div>
             </div>
             <div className={style.information}>
                 <div>
-
                     <h1>{data.name}</h1>
                     <h2>{data.description}</h2>
                 </div>
                 <div>
 
                     <h3>Features: </h3>
-                    <ul>
+                    <ul className={style.features}>
                         {
                             data.points.map((point) => (
                                 <li>{point}</li>
