@@ -548,5 +548,9 @@
     
     .links{
         gap: 0.75rem;
-    }    
+    }  
+    
+    .cross{
+        color: #e84949;
+    }
 }

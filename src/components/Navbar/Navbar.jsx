@@ -6,6 +6,7 @@ import { Link } from 'react-scroll'
 import { FiArrowUp, FiMenu, FiX } from "react-icons/fi";
 import useOnClickOutside from '../../hooks/useOnClickOutside'
 import useScrollVisibility from '../../hooks/useScrollVisibilty'
+import useRemoveBodyScrolling from '../../hooks/useRemoveBodyScrolling'
 
 const Navbar = () => {
     const [showOverLay, setShowOverLay] = useState(false)
@@ -20,6 +21,10 @@ const Navbar = () => {
             behavior: 'smooth',
         });
     };
+
+
+    useRemoveBodyScrolling(showOverLay);
+    
 
     return (
         <div className={style.Navbar}>

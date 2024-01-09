@@ -16,6 +16,11 @@ body {
     box-sizing: border-box;
 }
 
+body.modal-open {
+    min-height: 100vh !important;
+    overflow: hidden;
+}
+
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
