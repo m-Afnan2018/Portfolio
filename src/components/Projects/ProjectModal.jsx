@@ -3,11 +3,15 @@ import style from './Project.module.css'
 import { FaArrowLeft, FaArrowRight, FaGithub } from 'react-icons/fa'
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { FaLink, FaYoutube } from 'react-icons/fa6'
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 
 const ProjectModal = ({ data, setShow }) => {
     const [image, selectImage] = useState(data.image);
     const thumbnailRef = useRef();
-    const [isScrollable, setIsScrollable] = useState(false);
+    const [isScrollable, setIsScrollable] = useState(true);
+    const modalRef = useRef();
+    const [allLoad, setAllLoad] = useState(true);
+    useOnClickOutside(modalRef, ()=>setShow(false));
 
     const handleNextImage = () => {
         const currentIndex = data.moreImages.indexOf(image);
@@ -41,8 +45,7 @@ const ProjectModal = ({ data, setShow }) => {
         return () => {
             window.removeEventListener('resize', updateScrollable);
         };
-    }, [data.moreImages]);
-
+    }, [data.moreImages, allLoad]);
 
     const scrollThumbnail = (direction) => {
         const container = thumbnailRef.current;
@@ -61,9 +64,10 @@ const ProjectModal = ({ data, setShow }) => {
             }
         }
     };
+    
 
     return (
-        <div className={style.ProjectModal}>
+        <div className={style.ProjectModal} ref={modalRef}>
             <div className={style.image}>
                 <div className={style.mainImage}>
                     <img src={image} alt='mainImage' />
@@ -82,7 +86,7 @@ const ProjectModal = ({ data, setShow }) => {
                     <div className={style.thumbnail} ref={thumbnailRef}>
                         {
                             data.moreImages.map((i, index) => (
-                                <img className={image === i ? style.selected : ''} key={index} src={i} onClick={() => selectImage(i)} alt='thumbnail' />
+                                <img onLoad={()=>setAllLoad(!allLoad)} className={image === i ? style.selected : ''} key={index} src={i} onClick={() => selectImage(i)} alt='thumbnail' />
                             ))
                         }
                     </div>
