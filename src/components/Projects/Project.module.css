@@ -245,32 +245,105 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+    border-radius: 1rem;
 }
 
-.image>img{
-    width:100%;
-    height: 80%;
+.mainImage>img{
+    max-width:85%;
+    max-height: 90%;
     object-fit: contain;
+    border-radius: 1rem;
+}
+
+.mainImage>img:hover{
+    cursor: zoom-in;
+}
+
+.mainImage{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: radial-gradient(#1f1f1f00, #1f1f1f);
+}
+
+.thumbnailImage{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 1rem;
+    background-color: #1f1f1f;
+}
+
+.arrows{
+    padding: 0.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #343d68;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.arrows:hover{
+    background-color: #e84949;
 }
 
 .thumbnail{
-    height: 20%;
-    padding: 1rem;
+    height: 100%;
     cursor: pointer;
     display: flex;
     justify-content: flex-start;
-    align-items: center;    
     gap: 1rem;
+    align-items: center;
     overflow-x: scroll;
-    width: 100%;
+    padding: 0.8rem;
+    position: relative;
+    flex-grow: 1;
 }
 
 .thumbnail>img{
+    border-radius: 0.8rem;
     height: 100%;
+}
+
+.mainImage>div{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8rem;
+    cursor: pointer;
+    transition: all 200ms;
+}
+
+.mainImage>div:hover{
+    font-size: 2rem;
+    color: white;
+}
+
+.left{
+    left: 0;
+}
+
+.right{
+    right: 0;
 }
 
 .selected{
     filter: brightness(0.3);
+}
+
+.thumbnail::-webkit-scrollbar {
+    display: none;
 }
 
 .information{
@@ -334,13 +407,13 @@
 
 .links>svg{    
     cursor: pointer;
-    color: #343d68;
     font-size: 35px;
     transition: all 200ms;
+    color: #e84949;
 }
 
 .links>svg:hover{
-    color: #e84949;
+    color: #343d68;
 }
 
 @media (max-width: 1280px) {

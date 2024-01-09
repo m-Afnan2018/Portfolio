@@ -1,21 +1,95 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import style from './Project.module.css'
-import { FaGithub } from 'react-icons/fa'
+import { FaArrowLeft, FaArrowRight, FaGithub } from 'react-icons/fa'
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { FaLink, FaYoutube } from 'react-icons/fa6'
 
 const ProjectModal = ({ data, setShow }) => {
     const [image, selectImage] = useState(data.image);
+    const thumbnailRef = useRef();
+    const [isScrollable, setIsScrollable] = useState(false);
+
+    const handleNextImage = () => {
+        const currentIndex = data.moreImages.indexOf(image);
+        const nextIndex = (currentIndex + 1) % data.moreImages.length;
+        const nextImage = data.moreImages[nextIndex];
+        selectImage(nextImage);
+    };
+
+    const handlePrevImage = () => {
+        const currentIndex = data.moreImages.indexOf(image);
+        const prevIndex = (currentIndex - 1 + data.moreImages.length) % data.moreImages.length;
+        const prevImage = data.moreImages[prevIndex];
+        selectImage(prevImage);
+    };
+
+    useEffect(() => {
+        const updateScrollable = () => {
+            const container = thumbnailRef.current;
+            if (container) {
+                setIsScrollable(container.scrollWidth > container.clientWidth);
+            }
+        };
+
+        // Initial update
+        updateScrollable();
+
+        // Update on window resize
+        window.addEventListener('resize', updateScrollable);
+
+        // Cleanup the event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', updateScrollable);
+        };
+    }, [data.moreImages]);
+
+
+    const scrollThumbnail = (direction) => {
+        const container = thumbnailRef.current;
+        const scrollAmount = 100; // Adjust as needed
+        if (container) {
+            if (direction === 'left') {
+                container.scrollTo({
+                    left: container.scrollLeft - scrollAmount,
+                    behavior: 'smooth',
+                });
+            } else {
+                container.scrollTo({
+                    left: container.scrollLeft + scrollAmount,
+                    behavior: 'smooth',
+                });
+            }
+        }
+    };
+
     return (
         <div className={style.ProjectModal}>
             <div className={style.image}>
-                <img src={image} alt='mainImage' />
-                <div className={style.thumbnail}>
-                    {
-                        data.moreImages.map((i) => (
-                            <img className={image === i ? style.selected : ''} src={i} onClick={() => selectImage(i)} alt='thumbnail' />
-                        ))
-                    }
+                <div className={style.mainImage}>
+                    <img src={image} alt='mainImage' />
+                    <div className={style.left} onClick={() => handlePrevImage()}>
+                        <FaArrowLeft />
+                    </div>
+                    <div className={style.right} onClick={() => handleNextImage()} >
+                        <FaArrowRight />
+                    </div>
+                </div>
+                <div className={style.thumbnailImage}>
+                    {isScrollable &&
+                        <div className={style.arrows} onClick={() => scrollThumbnail('left')}>
+                            <FaArrowLeft />
+                        </div>}
+                    <div className={style.thumbnail} ref={thumbnailRef}>
+                        {
+                            data.moreImages.map((i, index) => (
+                                <img className={image === i ? style.selected : ''} key={index} src={i} onClick={() => selectImage(i)} alt='thumbnail' />
+                            ))
+                        }
+                    </div>
+                    {isScrollable &&
+                        <div className={style.arrows} onClick={() => scrollThumbnail('right')}>
+                            <FaArrowRight />
+                        </div>}
                 </div>
             </div>
             <div className={style.information}>
