@@ -70,10 +70,10 @@ const ProjectModal = ({ data, setShow }) => {
         <div className={style.ProjectModal} ref={modalRef}>
             <div className={style.image}>
                 <div className={style.mainImage}>
-                    <img src={image} alt='mainImage' />
                     <div className={style.left} onClick={() => handlePrevImage()}>
                         <FaArrowLeft />
                     </div>
+                    <img src={image} alt='mainImage' />
                     <div className={style.right} onClick={() => handleNextImage()} >
                         <FaArrowRight />
                     </div>
