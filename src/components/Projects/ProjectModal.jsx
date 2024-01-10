@@ -5,7 +5,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import { FaLink, FaYoutube } from 'react-icons/fa6'
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 
-const ProjectModal = ({ data, setShow }) => {
+const ProjectModal = ({ data, setShow, show }) => {
     const [image, selectImage] = useState(data.image);
     const thumbnailRef = useRef();
     const [isScrollable, setIsScrollable] = useState(true);
@@ -67,7 +67,7 @@ const ProjectModal = ({ data, setShow }) => {
     
 
     return (
-        <div className={style.ProjectModal} ref={modalRef}>
+        <div className={`${style.ProjectModal} ${ show ? style.showModal : style.hideModal}`} ref={modalRef}>
             <div className={style.image}>
                 <div className={style.mainImage}>
                     <div className={style.left} onClick={() => handlePrevImage()}>
