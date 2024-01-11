@@ -25,8 +25,31 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
+
 *:focus {
     outline: none !important;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #e84949 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 4px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #e84949;
+    border-radius: 16px;
+    border: 4px none #e84949;
 }
 
 code {
