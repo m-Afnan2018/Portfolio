@@ -21,11 +21,11 @@ const Footer = () => {
                 </div>
             </div>
             <div className={style.icons}>
-                <FaLinkedin />
-                <FaGithub />
-                <FaTwitter />
-                <FaInstagram />
-                <FaEnvelope />
+                <FaLinkedin onClick={()=>window.open('https://www.linkedin.com/in/mafnan2018/', '_blank')}/>
+                <FaGithub onClick={()=>window.open('https://github.com/m-Afnan2018/', '_blank')}/>
+                <FaTwitter onClick={()=>window.open('https://twitter.com/m_Afnan2018/', '_blank')}/>
+                <FaInstagram onClick={()=>window.open('https://www.instagram.com/m.afnan2018/', '_blank')}/>
+                <FaEnvelope onClick={()=>window.open('mailto:m.afnan2018@gmail.com', '_blank')}/>
             </div>
         </div>
     )

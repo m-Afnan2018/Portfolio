@@ -17,9 +17,6 @@ const projectData = [
             '',
             '',
             '',
-        ],
-        multiImages: [
-
         ]
     },
     {
@@ -37,9 +34,6 @@ const projectData = [
             '',
             '',
             '',
-        ],
-        multiImages: [
-
         ]
     },
     {
@@ -57,9 +51,6 @@ const projectData = [
             '',
             '',
             '',
-        ],
-        multiImages: [
-
         ]
     },
     {
@@ -77,9 +68,6 @@ const projectData = [
             '',
             '',
             '',
-        ],
-        multiImages: [
-
         ]
     },
 ];
