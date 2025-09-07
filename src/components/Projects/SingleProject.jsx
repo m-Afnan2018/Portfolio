@@ -27,8 +27,8 @@ const SingleProject = ({ index, data }) => {
                 <p className={style.description}>{data.description}</p>
                 <div className={style.buttons}>
                     <button onClick={()=>setShowModal(true)}>Read More</button>
-                    <FaGithub onClick={data.githubLink} className={style.icon}/>
-                    <FaLink onClick={data.liveLink} className={style.icon}/>
+                    <FaGithub onClick={()=>window.open(data.githubLink, '_blank')} className={style.icon}/>
+                    <FaLink onClick={()=>window.open(data.liveLink, '_blank')} className={style.icon}/>
                 </div>
             </div>
             {

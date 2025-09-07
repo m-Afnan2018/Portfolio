@@ -126,9 +126,9 @@ const ProjectModal = ({ data, setShow, show }) => {
                 <div>
                     <h3>Links: </h3>
                     <div className={style.links}>
-                        <FaGithub />
-                        <FaYoutube />
-                        <FaLink />
+                        <FaGithub onClick={()=>window.open(data.githubLink, '_blank')} />
+                        <FaYoutube onClick={()=>window.open(data.youtubeLink, '_blank')} />
+                        <FaLink onClick={()=>window.open(data.liveLink, '_blank')} />
                     </div>
 
                 </div>
