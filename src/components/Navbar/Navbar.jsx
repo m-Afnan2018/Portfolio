@@ -7,6 +7,7 @@ import { FiArrowUp, FiMenu, FiX } from "react-icons/fi";
 import useOnClickOutside from '../../hooks/useOnClickOutside'
 import useScrollVisibility from '../../hooks/useScrollVisibilty'
 import useRemoveBodyScrolling from '../../hooks/useRemoveBodyScrolling'
+import resume from '../../assets/data/resume.pdf'
 
 const Navbar = () => {
     const [showOverLay, setShowOverLay] = useState(false)
@@ -45,6 +46,9 @@ const Navbar = () => {
                 <Link to="techStack" smooth={true} duration={500}>
                     Skills
                 </Link>
+                <Link to="resume" onClick={(e) => { e.preventDefault(); window.open(resume, '_blank', 'noopener,noreferrer'); }}>
+                    Resume
+                </Link>
                 <Link to="contactUs" smooth={true} duration={500}>
                     Contact me
                 </Link>
@@ -61,6 +65,13 @@ const Navbar = () => {
                         </Link>
                         <Link to="techStack" smooth={true} duration={500} onClick={() => setShowOverLay(false)}>
                             Skills
+                        </Link>
+                        <Link smooth={true} duration={500} to={resume} onClick={(e) => {
+                            e.preventDefault();
+                            setShowOverLay(false)
+                            window.open(resume, '_blank');
+                            }}>
+                            Resume
                         </Link>
                         <Link to="contactUs" smooth={true} duration={500} onClick={() => setShowOverLay(false)}>
                             Contact me

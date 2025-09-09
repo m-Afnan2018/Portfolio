@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-scroll'
 import style from './Footer.module.css'
 import { FaEnvelope, FaGithub, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa'
+import resume from '../../assets/data/resume.pdf'
 
 const Footer = () => {
     return (
@@ -14,6 +15,9 @@ const Footer = () => {
                     </Link>
                     <Link to="techStack" smooth={true} duration={500}>
                         Skills
+                    </Link>
+                    <Link to="resume" onClick={(e) => { e.preventDefault(); window.open(resume, '_blank', 'noopener,noreferrer'); }}>
+                        Resume
                     </Link>
                     <Link to="contactUs" smooth={true} duration={500}>
                         Contact me
