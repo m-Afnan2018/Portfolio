@@ -14,20 +14,13 @@ const TechStack = () => {
                 </h2>
                 {/* <h2>My Tech Stack</h2> */}
                 <p>
-                    Hi Everyone My name is John Doe I am a Full Stack Web Developer I have
-                    been working for last 3 Years and Currently I am working with a
-                    Budding Startup in USA and a full Time Freelancer. Currently I am
-                    working on NextJs and Making Beautiful UI-UX are my fey features
+                    Hi there! I'm Mohammad Afnan, a passionate web developer with a knack for creating dynamic and responsive web applications. My tech stack is a blend of modern technologies that I leverage to build efficient and scalable solutions.
                 </p>
                 <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non
-                    doloremque aspernatur, maiores voluptatum minus laudantium?
-                    Perspiciatis accusamus minima porro dolores necessitatibus, magni
-                    dolorem et qui veniam nulla sequi molestiae maxime.
+                    My expertise includes building full-stack web applications using React, Node.js, and Express, integrating RESTful APIs, and working with databases like MongoDB and PostgreSQL. I am also experienced in deploying applications to cloud platforms and optimizing performance for scalable solutions.
                 </p>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis quidem
-                    quos ullam veritatis voluptates tenetur qui ipsa nulla culpa itaque?
+                    I am always eager to learn and adapt to new technologies, and I thrive in collaborative environments where I can contribute to innovative projects. Let's connect and create something amazing together!
                 </p>
             </div>
             {/* Right Div */}
