@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import style from './HeroSection.module.css'
+import resume from '../../assets/resume.pdf'
 import Typed from 'typed.js';
 import { Link } from 'react-scroll';
 
@@ -42,6 +43,11 @@ const AboutMe = () => {
                 <p>I’m a software developer and here is my portfolio website.</p>
                 <p>Here you’ll learn about my journey as a software developer.</p>
             </div>
+            <Link to="resume" onClick={(e) => { e.preventDefault(); window.open(resume, '_blank', 'noopener,noreferrer'); }}>
+                <div className={style.btn}>
+                    Open Resume
+                </div>
+            </Link>
             <Link to="contactUs" smooth={true} duration={500}>
                 <div className={style.btn}>
                     Hire Me
