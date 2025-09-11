@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import style from './HeroSection.module.css'
-import resume from '../../assets/resume.pdf'
+import resume from '../../assets/data/resume.pdf'
 import Typed from 'typed.js';
 import { Link } from 'react-scroll';
 
