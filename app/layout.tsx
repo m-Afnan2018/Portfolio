@@ -31,7 +31,17 @@ export default function RootLayout({
       lang="en"
       className={`${syne.variable} ${manrope.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+          {/* Skip-to-main for keyboard users */}
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-5 focus:py-3 focus:rounded-xl focus:text-sm focus:font-semibold focus:text-white"
+            style={{ background: "var(--accent)" } as React.CSSProperties}
+          >
+            Skip to main content
+          </a>
+          {children}
+        </body>
     </html>
   );
 }

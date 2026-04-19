@@ -2,20 +2,20 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useId } from "react";
-import { Mail, Phone, MapPin, Send, ExternalLink, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, MapPin, Send, ExternalLink, ArrowUpRight, CheckCircle2 } from "lucide-react";
 
 const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
 
 const contactItems = [
-  { icon: Mail,        label: "Email",    value: "hs3547454@gmail.com",         href: "mailto:hs3547454@gmail.com",          color: "#A78BFA" },
-  { icon: Phone,       label: "Phone",    value: "+91 88514 37549",             href: "tel:+918851437549",                   color: "#F59E0B" },
-  { icon: MapPin,      label: "Location", value: "Sahibabad, Ghaziabad, India", href: null,                                  color: "#34D399" },
-  { icon: ExternalLink,label: "LinkedIn", value: "linkedin.com/in/harshsharma", href: "https://linkedin.com/in/harshsharma", color: "#38BDF8" },
+  { icon: Mail,         label: "Email",    value: "hs3547454@gmail.com",         href: "mailto:hs3547454@gmail.com",          color: "#A78BFA" },
+  { icon: Phone,        label: "Phone",    value: "+91 88514 37549",             href: "tel:+918851437549",                   color: "#F59E0B" },
+  { icon: MapPin,       label: "Location", value: "Sahibabad, Ghaziabad, India", href: null,                                  color: "#34D399" },
+  { icon: ExternalLink, label: "LinkedIn", value: "linkedin.com/in/harshsharma", href: "https://linkedin.com/in/harshsharma", color: "#38BDF8" },
 ];
 
 export default function Contact() {
-  const ref      = useRef<HTMLDivElement>(null);
-  const inView   = useInView(ref, { once: true, margin: "-60px" });
+  const ref    = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
   const [form, setForm]     = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
   const formId = useId();
@@ -38,7 +38,7 @@ export default function Contact() {
     focus:outline-none focus:ring-2 focus:ring-violet-500/60
   `;
   const inputStyle = {
-    background: "rgba(255,255,255,0.04)",
+    background: "rgba(255,255,255,0.05)",
     border: "1px solid var(--border)",
     color: "var(--fg-primary)",
     fontFamily: "var(--font-body)",
@@ -52,16 +52,16 @@ export default function Contact() {
         style={{ width: 600, height: 400, top: "30%", left: "30%", transform: "translateX(-50%)", background: "radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 70%)" }}
       />
 
-      <div className="max-w-6xl mx-auto px-5 md:px-8">
+      <div className="max-w-5xl mx-auto px-6 md:px-10">
         {/* Label */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: EXPO_OUT }}
-          className="flex items-center gap-4 mb-6"
+          className="flex items-center gap-4 mb-4"
         >
           <span className="tag">Contact</span>
-          <div className="h-px flex-1 max-w-xs" style={{ background: "linear-gradient(90deg, rgba(124,58,237,0.35), transparent)" }} />
+          <div className="h-px flex-1 max-w-[200px]" style={{ background: "linear-gradient(90deg, rgba(124,58,237,0.35), transparent)" }} />
         </motion.div>
 
         {/* Heading */}
@@ -83,13 +83,13 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14">
           {/* ── Left info ── */}
           <motion.div
             initial={{ opacity: 0, x: -32 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.12, ease: EXPO_OUT }}
-            className="lg:col-span-2 space-y-6"
+            className="lg:col-span-2 space-y-5"
           >
             {contactItems.map(({ icon: Icon, label, value, href, color }, i) => (
               <motion.div
@@ -98,17 +98,17 @@ export default function Contact() {
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.45, delay: 0.2 + i * 0.07, ease: EXPO_OUT }}
                 whileHover={{ x: 5 }}
-                className="flex items-center gap-3 group"
+                className="flex items-center gap-4 group"
               >
                 <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                  className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
                   style={{ background: `${color}18`, border: `1px solid ${color}28` }}
                   aria-hidden
                 >
                   <Icon size={16} style={{ color }} />
                 </div>
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-wider mb-0.5" style={{ color: "var(--fg-muted)", fontFamily: "var(--font-body)" }}>
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] mb-0.5" style={{ color: "var(--fg-muted)", fontFamily: "var(--font-body)" }}>
                     {label}
                   </p>
                   {href ? (
@@ -138,19 +138,19 @@ export default function Contact() {
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.55, ease: EXPO_OUT }}
-              className="glass-card p-5 mt-4"
+              className="glass-card p-5 mt-2"
               style={{ borderColor: "rgba(52,211,153,0.25)" }}
               role="status"
               aria-live="polite"
             >
-              <div className="flex items-center gap-2 mb-1.5">
+              <div className="flex items-center gap-2.5 mb-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" aria-hidden />
                 <span className="text-emerald-400 font-semibold text-sm" style={{ fontFamily: "var(--font-body)" }}>
                   Available for Projects
                 </span>
               </div>
               <p className="text-xs leading-relaxed" style={{ color: "var(--fg-muted)", fontFamily: "var(--font-body)" }}>
-                Taking on freelance projects and collaborations. Typical response: within 24 hours.
+                Taking on freelance projects and collaborations. Typical response within 24 hours.
               </p>
             </motion.div>
           </motion.div>
@@ -167,11 +167,13 @@ export default function Contact() {
                 initial={{ opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, ease: EXPO_OUT }}
-                className="glass-card p-12 text-center h-full min-h-[320px] flex flex-col items-center justify-center"
+                className="glass-card p-12 text-center h-full min-h-[340px] flex flex-col items-center justify-center"
                 style={{ borderColor: "rgba(52,211,153,0.25)" }}
                 role="alert"
               >
-                <div className="text-4xl mb-4" aria-hidden>✓</div>
+                <div className="mb-5 flex items-center justify-center" aria-hidden>
+                  <CheckCircle2 size={56} style={{ color: "#34D399" }} />
+                </div>
                 <h3 className="text-2xl font-bold mb-2 text-white" style={{ fontFamily: "var(--font-heading)" }}>
                   Message Sent!
                 </h3>
@@ -182,7 +184,7 @@ export default function Contact() {
             ) : (
               <form
                 onSubmit={handleSubmit}
-                className="glass-card p-7 space-y-5"
+                className="glass-card p-8 space-y-6"
                 noValidate
                 aria-label="Contact form"
               >
@@ -190,7 +192,7 @@ export default function Contact() {
                   <div>
                     <label
                       htmlFor={`${formId}-name`}
-                      className="block text-xs font-semibold uppercase tracking-wider mb-2"
+                      className="block text-[0.68rem] font-semibold uppercase tracking-[0.1em] mb-2"
                       style={{ color: "var(--fg-muted)", fontFamily: "var(--font-body)" }}
                     >
                       Name <span className="text-red-400" aria-label="required">*</span>
@@ -209,7 +211,7 @@ export default function Contact() {
                   <div>
                     <label
                       htmlFor={`${formId}-email`}
-                      className="block text-xs font-semibold uppercase tracking-wider mb-2"
+                      className="block text-[0.68rem] font-semibold uppercase tracking-[0.1em] mb-2"
                       style={{ color: "var(--fg-muted)", fontFamily: "var(--font-body)" }}
                     >
                       Email <span className="text-red-400" aria-label="required">*</span>
@@ -230,7 +232,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor={`${formId}-subject`}
-                    className="block text-xs font-semibold uppercase tracking-wider mb-2"
+                    className="block text-[0.68rem] font-semibold uppercase tracking-[0.1em] mb-2"
                     style={{ color: "var(--fg-muted)", fontFamily: "var(--font-body)" }}
                   >
                     Subject <span className="text-red-400" aria-label="required">*</span>
@@ -249,7 +251,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor={`${formId}-message`}
-                    className="block text-xs font-semibold uppercase tracking-wider mb-2"
+                    className="block text-[0.68rem] font-semibold uppercase tracking-[0.1em] mb-2"
                     style={{ color: "var(--fg-muted)", fontFamily: "var(--font-body)" }}
                   >
                     Message <span className="text-red-400" aria-label="required">*</span>

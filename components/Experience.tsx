@@ -46,28 +46,28 @@ export default function Experience() {
         style={{ width: 400, height: 350, top: "20%", left: "-8%", background: "radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 70%)" }}
       />
 
-      <div className="max-w-5xl mx-auto px-5 md:px-8">
+      <div className="max-w-4xl mx-auto px-6 md:px-10">
         {/* Label */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: EXPO_OUT }}
-          className="flex items-center gap-4 mb-14"
+          className="flex items-center gap-4 mb-16"
         >
           <span className="tag">Experience</span>
-          <div className="h-px flex-1 max-w-xs" style={{ background: "linear-gradient(90deg, rgba(124,58,237,0.35), transparent)" }} />
+          <div className="h-px flex-1 max-w-[200px]" style={{ background: "linear-gradient(90deg, rgba(124,58,237,0.35), transparent)" }} />
         </motion.div>
 
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line */}
           <div
-            className="absolute left-5 top-6 bottom-6 w-px hidden md:block"
+            className="absolute left-5 top-8 bottom-8 w-px hidden md:block"
             style={{ background: "linear-gradient(to bottom, rgba(124,58,237,0.5), rgba(245,158,11,0.3), transparent)" }}
             aria-hidden
           />
 
-          <ol className="space-y-10">
+          <ol className="space-y-8">
             {experiences.map((exp, i) => (
               <motion.li
                 key={exp.company}
@@ -76,9 +76,9 @@ export default function Experience() {
                 transition={{ duration: 0.7, delay: i * 0.18, ease: EXPO_OUT }}
                 className="relative md:pl-20"
               >
-                {/* Dot */}
+                {/* Timeline icon */}
                 <div
-                  className="absolute left-0 top-5 w-10 h-10 rounded-xl hidden md:flex items-center justify-center flex-shrink-0"
+                  className="absolute left-0 top-6 w-10 h-10 rounded-xl hidden md:flex items-center justify-center flex-shrink-0"
                   style={{
                     background: `${exp.accentColor}18`,
                     border: `1px solid ${exp.accentColor}35`,
@@ -88,17 +88,12 @@ export default function Experience() {
                   <Briefcase size={17} style={{ color: exp.accentColor }} />
                 </div>
 
-                <motion.article
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.25, ease: EXPO_OUT }}
-                  className="glass-card p-7 md:p-8"
-                  style={{ borderColor: "var(--border)" }}
-                >
+                <article className="glass-card p-8">
                   {/* Header */}
-                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-7">
                     <div>
                       <h3
-                        className="text-xl font-bold mb-1"
+                        className="text-xl font-bold mb-1.5"
                         style={{ fontFamily: "var(--font-heading)", color: "var(--fg-primary)" }}
                       >
                         {exp.title}
@@ -112,7 +107,7 @@ export default function Experience() {
                         )}
                       </div>
                     </div>
-                    <div className="flex flex-col sm:items-end gap-2 flex-shrink-0">
+                    <div className="flex flex-col sm:items-end gap-2.5 flex-shrink-0">
                       <div
                         className="flex items-center gap-1.5 text-xs font-medium"
                         style={{ color: "var(--fg-muted)", fontFamily: "var(--font-body)" }}
@@ -121,7 +116,7 @@ export default function Experience() {
                         <time>{exp.period}</time>
                       </div>
                       <span
-                        className="text-xs font-semibold px-3 py-1 rounded-full"
+                        className="text-xs font-semibold px-3 py-1.5 rounded-full"
                         style={{
                           background: `${exp.accentColor}18`,
                           color: exp.accentColor,
@@ -134,19 +129,19 @@ export default function Experience() {
                     </div>
                   </div>
 
-                  {/* Bullet points */}
-                  <ul className="space-y-2.5" role="list">
+                  {/* Bullets */}
+                  <ul className="space-y-3" role="list">
                     {exp.highlights.map((h, j) => (
                       <motion.li
                         key={j}
                         initial={{ opacity: 0, x: -8 }}
                         animate={inView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.4, delay: i * 0.18 + j * 0.06 + 0.25, ease: EXPO_OUT }}
-                        className="flex gap-3 text-sm leading-relaxed"
+                        transition={{ duration: 0.4, delay: i * 0.18 + j * 0.07 + 0.25, ease: EXPO_OUT }}
+                        className="flex gap-3.5 text-sm leading-relaxed"
                         style={{ color: "var(--fg-secondary)", fontFamily: "var(--font-body)" }}
                       >
                         <span
-                          className="mt-[7px] flex-shrink-0 w-1 h-1 rounded-full"
+                          className="mt-[8px] flex-shrink-0 w-1.5 h-1.5 rounded-full"
                           style={{ background: exp.accentColor }}
                           aria-hidden
                         />
@@ -154,7 +149,7 @@ export default function Experience() {
                       </motion.li>
                     ))}
                   </ul>
-                </motion.article>
+                </article>
               </motion.li>
             ))}
           </ol>

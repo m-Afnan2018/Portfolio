@@ -3,7 +3,7 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight, Eye } from "lucide-react";
+import { ArrowUpRight, Eye, FolderOpen } from "lucide-react";
 
 const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
 
@@ -83,16 +83,16 @@ export default function Projects() {
         style={{ width: 500, height: 400, top: "0%", right: "5%", background: "radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 70%)" }}
       />
 
-      <div className="max-w-7xl mx-auto px-5 md:px-8">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
         {/* Label */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: EXPO_OUT }}
-          className="flex items-center gap-4 mb-6"
+          className="flex items-center gap-4 mb-4"
         >
           <span className="tag">Projects</span>
-          <div className="h-px flex-1 max-w-xs" style={{ background: "linear-gradient(90deg, rgba(124,58,237,0.35), transparent)" }} />
+          <div className="h-px flex-1 max-w-[200px]" style={{ background: "linear-gradient(90deg, rgba(124,58,237,0.35), transparent)" }} />
         </motion.div>
 
         {/* Heading */}
@@ -127,7 +127,7 @@ export default function Projects() {
               key={cat}
               onClick={() => setActiveFilter(cat)}
               aria-pressed={activeFilter === cat}
-              className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-250 cursor-pointer focus-visible:outline-2 focus-visible:outline-violet-500"
+              className="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-250 cursor-pointer focus-visible:outline-2 focus-visible:outline-violet-500"
               style={{
                 minHeight: "40px",
                 background: activeFilter === cat ? "rgba(124,58,237,0.9)" : "var(--surface)",
@@ -143,8 +143,37 @@ export default function Projects() {
         </motion.div>
 
         {/* Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
+            {filtered.length === 0 && (
+              <motion.div
+                key="empty"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.35, ease: EXPO_OUT }}
+                className="col-span-full flex flex-col items-center justify-center py-28 gap-5"
+                role="status"
+                aria-live="polite"
+              >
+                <FolderOpen size={48} style={{ color: "var(--fg-muted)" }} aria-hidden />
+                <div className="text-center">
+                  <p className="text-base font-semibold mb-1" style={{ color: "var(--fg-secondary)", fontFamily: "var(--font-body)" }}>
+                    No projects in this category yet.
+                  </p>
+                  <p className="text-sm" style={{ color: "var(--fg-muted)", fontFamily: "var(--font-body)" }}>
+                    Real projects will be added soon.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setActiveFilter("All")}
+                  className="text-sm font-semibold transition-colors hover:text-white"
+                  style={{ color: "var(--accent-light)", fontFamily: "var(--font-body)" }}
+                >
+                  View all projects →
+                </button>
+              </motion.div>
+            )}
             {filtered.map((project, i) => (
               <motion.article
                 key={project.id}
@@ -154,7 +183,10 @@ export default function Projects() {
                 exit={{ opacity: 0, y: -16, scale: 0.97 }}
                 transition={{ duration: 0.45, delay: i * 0.06, ease: EXPO_OUT }}
                 className="group rounded-2xl overflow-hidden cursor-pointer"
-                style={{ border: "1px solid var(--border)", transition: "border-color 280ms, transform 280ms var(--ease-expo)" }}
+                style={{
+                  border: `1px solid ${hovered === project.id ? "rgba(124,58,237,0.3)" : "var(--border)"}`,
+                  transition: "border-color 280ms",
+                }}
                 onMouseEnter={() => setHovered(project.id)}
                 onMouseLeave={() => setHovered(null)}
                 whileHover={{ y: -6 }}
@@ -166,7 +198,7 @@ export default function Projects() {
                     src={project.image}
                     alt={`${project.title} — project preview`}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-108"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                     style={{ transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
@@ -180,7 +212,7 @@ export default function Projects() {
                     }}
                   />
 
-                  {/* Action buttons — visible on hover */}
+                  {/* Action buttons */}
                   <motion.div
                     initial={false}
                     animate={hovered === project.id ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
@@ -204,9 +236,9 @@ export default function Projects() {
                   </motion.div>
 
                   {/* Category chip */}
-                  <div className="absolute top-3 left-3">
+                  <div className="absolute top-3.5 left-3.5">
                     <span
-                      className="text-xs font-semibold px-3 py-1 rounded-full"
+                      className="text-xs font-semibold px-3 py-1.5 rounded-full"
                       style={{
                         background: `${project.accent}28`,
                         color: project.accent,
@@ -229,21 +261,21 @@ export default function Projects() {
                   }}
                 >
                   <h3
-                    className="font-bold text-base mb-2 transition-colors duration-200 group-hover:text-white"
+                    className="font-bold text-base mb-2.5 transition-colors duration-200 group-hover:text-white"
                     style={{ color: "var(--fg-primary)", fontFamily: "var(--font-heading)" }}
                   >
                     {project.title}
                   </h3>
-                  <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--fg-muted)", fontFamily: "var(--font-body)" }}>
+                  <p className="text-sm leading-relaxed mb-5" style={{ color: "var(--fg-muted)", fontFamily: "var(--font-body)" }}>
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-1.5" role="list" aria-label="Project tags">
+                  <div className="flex flex-wrap gap-2" role="list" aria-label="Project tags">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
                         role="listitem"
                         className="text-xs px-2.5 py-1 rounded-md font-medium"
-                        style={{ background: "rgba(255,255,255,0.05)", color: "var(--fg-muted)", fontFamily: "var(--font-body)" }}
+                        style={{ background: "rgba(255,255,255,0.06)", color: "var(--fg-muted)", fontFamily: "var(--font-body)" }}
                       >
                         #{tag}
                       </span>
