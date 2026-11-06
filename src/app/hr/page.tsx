@@ -10,6 +10,7 @@
 import type { Metadata } from "next";
 import { cacheLife } from "next/cache";
 import { profile, achievements } from "@/data/profile";
+import { hrGraph, ldJson } from "@/lib/seo";
 import { experience } from "@/data/experience";
 import { BrandMark } from "@/components/brand/BrandMark";
 import { Signature } from "@/components/brand/Signature";
@@ -20,11 +21,38 @@ import { CopyEmailButton, LocalTime, PrintButton } from "@/components/hr/HrClien
 import { HrContactForm } from "@/components/hr/HrContactForm";
 import { HrVersionSwitch } from "@/components/hr/HrVersionSwitch";
 
+const hrDescription = `${profile.name} — ${profile.title}. Experience, skills, projects and availability at a glance.`;
+
 export const metadata: Metadata = {
   title: "Recruiter brief",
-  description: `${profile.name} — ${profile.title}. Experience, skills, projects and availability at a glance.`,
+  description: hrDescription,
+  keywords: [
+    `${profile.name} resume`,
+    `${profile.name} CV`,
+    "Full Stack Developer resume",
+    "DevOps Engineer India",
+    "hire Next.js developer",
+    "MERN developer",
+  ],
   alternates: { canonical: "/hr" },
-  openGraph: { url: "/hr", title: `${profile.name} — Recruiter brief` },
+  openGraph: {
+    type: "profile",
+    url: "/hr",
+    title: `${profile.name} — Recruiter brief`,
+    description: hrDescription,
+    siteName: `${profile.name} — portfolio`,
+    locale: "en_IN",
+    firstName: profile.firstName,
+    lastName: profile.lastName,
+    username: profile.links.githubUser,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${profile.name} — Recruiter brief`,
+    description: hrDescription,
+    site: profile.links.twitterHandle,
+    creator: profile.links.twitterHandle,
+  },
 };
 
 // ── time maths (cached daily, so the page stays static) ─────────────────────
@@ -123,6 +151,7 @@ export default async function HrPage() {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(hrGraph()) }} />
       <a
         href="#hr-main"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-full focus:bg-[var(--hr-ink)] focus:px-4 focus:py-2 focus:text-white"

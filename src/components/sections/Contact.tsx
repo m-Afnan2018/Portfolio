@@ -277,7 +277,7 @@ export function Contact() {
                 { href: profile.links.linkedin, label: "linkedin", icon: "linkedin" },
                 { href: profile.links.twitter, label: "x / twitter", icon: "x" },
                 { href: profile.links.instagram, label: "instagram", icon: "instagram" },
-                { href: profile.links.oldPortfolio, label: "portfolio v1", icon: "globe" },
+                { href: profile.links.source, label: "this site's source", icon: "git" },
               ].map((l) => (
                 <li key={l.label}>
                   <a

@@ -16,13 +16,14 @@ export async function ogFonts() {
 }
 
 /** The MA mark for generated social images (Satori: inline styles, plain SVG). */
-export function OgMark({ size = 88 }: { size?: number }) {
+export function OgMark({ size = 88, square = false }: { size?: number; square?: boolean }) {
   return (
     <div
       style={{
         width: size,
         height: size,
-        borderRadius: size * 0.25,
+        // square = full-bleed for app icons (the OS applies its own mask)
+        borderRadius: square ? 0 : size * 0.25,
         background: "linear-gradient(135deg, #22d3ee 0%, #2563eb 100%)",
         display: "flex",
         alignItems: "center",

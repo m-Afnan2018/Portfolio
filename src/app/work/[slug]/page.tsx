@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { projects } from "@/data/projects";
 import { profile } from "@/data/profile";
 import { highlight } from "@/lib/highlight";
+import { ldJson, projectGraph } from "@/lib/seo";
 import { CaseStudy } from "@/components/case/CaseStudy";
 
 /** /work/<slug> — one case study per project, all prerendered. */
@@ -19,16 +20,34 @@ export async function generateMetadata({
   const { slug } = await params;
   const p = projects.find((x) => x.slug === slug);
   if (!p) return {};
+  const description = `${p.tagline} ${p.description}`;
   return {
     title: `${p.title} — case study`,
-    description: `${p.tagline} ${p.description}`,
+    description,
+    keywords: [p.title, ...p.stack, ...p.category, profile.name, "case study", "portfolio project"],
+    authors: [{ name: profile.name, url: profile.siteUrl }],
     alternates: { canonical: `/work/${p.slug}` },
+    // TODO placeholders stay out of search results until they're real projects
+    ...(p.placeholder && { robots: { index: false, follow: true } }),
+    // images come from ./opengraph-image.tsx and ./twitter-image.tsx
     openGraph: {
       type: "article",
       url: `/work/${p.slug}`,
       title: `${p.title} — ${profile.name}`,
       description: p.tagline,
-      images: [{ url: p.image }],
+      siteName: `${profile.name} — portfolio`,
+      locale: "en_IN",
+      authors: [profile.siteUrl],
+      section: p.category[0],
+      tags: p.stack,
+      publishedTime: `${String(p.year).slice(0, 4)}-01-01`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${p.title} — ${profile.name}`,
+      description: p.tagline,
+      site: profile.links.twitterHandle,
+      creator: profile.links.twitterHandle,
     },
   };
 }
@@ -56,13 +75,19 @@ async function Case({ params }: { params: Promise<{ slug: string }> }) {
     : undefined;
 
   return (
-    <CaseStudy
-      key={project.slug}
-      project={project}
-      next={next}
-      index={index}
-      total={projects.length}
-      codeHtml={codeHtml}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: ldJson(projectGraph(project)) }}
+      />
+      <CaseStudy
+        key={project.slug}
+        project={project}
+        next={next}
+        index={index}
+        total={projects.length}
+        codeHtml={codeHtml}
+      />
+    </>
   );
 }

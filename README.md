@@ -92,4 +92,5 @@ The `Dockerfile` is multi-stage and uses Next's `output: "standalone"`; the cont
 - [ ] LinkedIn URL in `src/data/profile.ts` (`links.linkedin`) and the repo URL (`links.source`)
 - [ ] Replace the four `TODO:` projects in `src/data/projects.ts`, and point `repoUrl`s at the exact repos
 - [ ] Real screenshots in `public/projects/` (the current covers are generated placeholders)
-- [ ] `NEXT_PUBLIC_SITE_URL` (defaults to `https://mafnan.dev`)
+- [x] `NEXT_PUBLIC_SITE_URL` (defaults to `https://mafnan2018.vercel.app`; Netlify mirror canonicalises to it)
+- [ ] Verify the site in Google Search Console / Bing Webmaster Tools and set the `NEXT_PUBLIC_*_VERIFICATION` env vars

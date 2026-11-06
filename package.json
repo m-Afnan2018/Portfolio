@@ -30,6 +30,7 @@
     "react-hook-form": "^7.91.0",
     "resend": "^6.37.0",
     "server-only": "^0.0.1",
+    "sharp": "^0.35.5",
     "shiki": "^4.6.0",
     "three": "^0.187.0",
     "zod": "^4.6.7",

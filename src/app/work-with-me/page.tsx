@@ -14,6 +14,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { profile } from "@/data/profile";
+import { clientsGraph, ldJson } from "@/lib/seo";
 import { BrandMark } from "@/components/brand/BrandMark";
 import { ClientMotion } from "@/components/clients/ClientMotion";
 import { ClientHero } from "@/components/clients/ClientHero";
@@ -29,13 +30,38 @@ import { Faq } from "@/components/clients/Faq";
 import { InquirySection } from "@/components/clients/InquirySection";
 import { ClientVersionSwitch } from "@/components/clients/ClientVersionSwitch";
 
+const clientsDescription = `Hire ${profile.name} to build your web app, online store or business website — and keep it fast, secure and online.`;
+
 export const metadata: Metadata = {
   title: "Work with me",
-  description: `Hire ${profile.name} to build your web app, online store or business website — and keep it fast, secure and online.`,
+  description: clientsDescription,
+  keywords: [
+    "hire web developer India",
+    "freelance web developer",
+    "website development packages",
+    "business website design",
+    "e-commerce website developer",
+    "Shopify developer",
+    "WordPress developer",
+    "Next.js developer",
+    "website maintenance",
+    profile.name,
+  ],
   alternates: { canonical: "/work-with-me" },
   openGraph: {
+    type: "website",
     url: "/work-with-me",
     title: `Work with ${profile.name} — websites, stores & web apps`,
+    description: clientsDescription,
+    siteName: `${profile.name} — portfolio`,
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Work with ${profile.name} — websites, stores & web apps`,
+    description: clientsDescription,
+    site: profile.links.twitterHandle,
+    creator: profile.links.twitterHandle,
   },
 };
 
@@ -76,6 +102,10 @@ function Heading({
 export default function WorkWithMePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: ldJson(clientsGraph()) }}
+      />
       <ClientMotion />
       <a
         href="#cl-main"

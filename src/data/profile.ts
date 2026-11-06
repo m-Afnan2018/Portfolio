@@ -37,11 +37,23 @@ export const profile = {
     linkedin: "https://www.linkedin.com/in/mafnan2018",
     twitter: "https://x.com/m_Afnan2018",
     instagram: "https://www.instagram.com/m.afnan2018",
-    oldPortfolio: "https://mafnan2018.netlify.app/",
-    // TODO: point this to the repo that hosts this site
-    source: "https://github.com/m-Afnan2018",
+    twitterHandle: "@m_Afnan2018",
+    source: "https://github.com/m-Afnan2018/Portfolio",
   },
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://mafnan.dev",
+  /**
+   * Canonical URL — every canonical tag, OG/Twitter URL, sitemap entry and
+   * JSON-LD id is built from this. Netlify serves the same build as a mirror,
+   * so its pages point search engines back here (no duplicate content).
+   */
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://mafnan2018.vercel.app",
+  mirrors: ["https://mafnan2018.netlify.app"],
+  /** public coding profiles — linked from achievements and listed in JSON-LD sameAs */
+  codingProfiles: [
+    "https://leetcode.com/u/m_afnan2018",
+    "https://www.geeksforgeeks.org/user/mafnan2018/",
+    "https://codeforces.com/profile/m.afnan2018",
+    "https://www.codechef.com/users/m_afnan2018",
+  ],
   version: "v2.0.0",
   changelog: [
     { version: "v2.0.0", note: "rebuilt with Next.js 16, R3F & a particle Core" },
