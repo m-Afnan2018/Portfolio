@@ -24,7 +24,10 @@ const description = `${profile.name} — ${profile.title}. ${profile.oneLiner} N
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.siteUrl),
-  title: { default: `${profile.name} — Full Stack Developer & DevOps Engineer`, template: `%s · ${profile.name}` },
+  title: {
+    default: `${profile.name} — Full Stack Developer & DevOps Engineer`,
+    template: `%s · ${profile.name}`,
+  },
   description,
   applicationName: `${profile.name} — portfolio`,
   authors: [{ name: profile.name, url: profile.siteUrl }],
@@ -53,7 +56,11 @@ export const metadata: Metadata = {
     siteName: profile.name,
     locale: "en_IN",
   },
-  twitter: { card: "summary_large_image", title: `${profile.name} — ${profile.shortTitle}`, description },
+  twitter: {
+    card: "summary_large_image",
+    title: `${profile.name} — ${profile.shortTitle}`,
+    description,
+  },
   robots: { index: true, follow: true },
   icons: { icon: "/icon.svg" },
 };
@@ -83,16 +90,41 @@ const jsonLd = {
   worksFor: { "@type": "Organization", name: experience[0].company },
   address: { "@type": "PostalAddress", addressCountry: "IN" },
   alumniOf: profile.education.map((e) => ({ "@type": "EducationalOrganization", name: e.school })),
-  knowsAbout: ["Next.js", "React", "Node.js", "MongoDB", "TypeScript", "Docker", "Nginx", "AWS", "CI/CD", "Shopify"],
-  sameAs: [profile.links.github, profile.links.linkedin, profile.links.oldPortfolio].filter((l) => !l.includes("TODO")),
+  knowsAbout: [
+    "Next.js",
+    "React",
+    "Node.js",
+    "MongoDB",
+    "TypeScript",
+    "Docker",
+    "Nginx",
+    "AWS",
+    "CI/CD",
+    "Shopify",
+  ],
+  sameAs: [
+    profile.links.github,
+    profile.links.linkedin,
+    profile.links.twitter,
+    profile.links.instagram,
+    profile.links.oldPortfolio,
+  ].filter((l) => !l.includes("TODO")),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-theme="dark" className={`${display.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      data-theme="dark"
+      className={`${display.variable} ${mono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body>{children}</body>
     </html>

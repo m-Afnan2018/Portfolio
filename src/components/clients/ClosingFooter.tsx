@@ -71,6 +71,8 @@ export function ClosingFooter() {
   const elsewhere = [
     { href: profile.links.github, label: "GitHub" },
     { href: profile.links.linkedin, label: "LinkedIn" },
+    { href: profile.links.instagram, label: "Instagram" },
+    { href: profile.links.twitter, label: "X" },
     { href: `mailto:${profile.email}`, label: "Email" },
     { href: `https://wa.me/${profile.phone.replace(/\D/g, "")}`, label: "WhatsApp" },
   ].filter((l) => !l.href.includes("TODO"));

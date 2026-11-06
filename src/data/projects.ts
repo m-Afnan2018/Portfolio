@@ -47,6 +47,50 @@ export const projectCategories: ProjectCategory[] = [
 
 export const projects: Project[] = [
   {
+    slug: "studynotion",
+    title: "StudyNotion",
+    tagline: "An ed-tech marketplace where instructors sell courses and students learn.",
+    description:
+      "A full-stack MERN platform where instructors create, publish and manage courses and students buy them and learn from a personal dashboard. Access is split cleanly between students, instructors and admins, and payments run through Razorpay with webhook verification.",
+    category: ["Full Stack"],
+    stack: ["React", "Node.js", "Express", "MongoDB", "Razorpay"],
+    highlights: [
+      "Instructors create and manage courses; students buy and track them",
+      "Role-based access across students, instructors and admins",
+      "Razorpay payments verified via API + webhooks",
+    ],
+    image: "/projects/studynotion.webp",
+    gallery: [
+      "/projects/studynotion-1.webp",
+      "/projects/studynotion-2.webp",
+      "/projects/studynotion-3.webp",
+      "/projects/studynotion-4.webp",
+    ],
+    liveUrl: "https://studynotion-edtech-project.vercel.app",
+    // repos (StudyNotion-Frontend / -Backend) are private — make public to add repoUrl
+    featured: true,
+    year: 2024,
+    role: "Solo — full-stack build",
+    challenge:
+      "Selling courses online means two very different users in one product: instructors who need to build and manage content, and students who need to pay for it and pick up where they left off.",
+    approach: [
+      {
+        title: "Two dashboards, one platform",
+        body: "Instructors get course builders with sections and lectures; students get their enrolled courses, progress and cart. Each role only ever sees what it's allowed to.",
+      },
+      {
+        title: "Payments that can be trusted",
+        body: "Razorpay checkout on the client, with the order confirmed server-side through the API and a webhook before a student is enrolled.",
+      },
+      {
+        title: "A catalogue that scales",
+        body: "Courses are grouped by category with ratings and pricing, so the catalogue stays browsable as instructors keep adding content.",
+      },
+    ],
+    outcome:
+      "A complete marketplace — auth, roles, payments and content management — built end to end on the MERN stack.",
+  },
+  {
     slug: "dynamic-gif-generator",
     title: "Dynamic GIF Generator",
     tagline: "Build, customise and share GIFs from templates — with real-time chat.",
@@ -60,6 +104,12 @@ export const projects: Project[] = [
       "Real-time in-app chat backed by Firebase",
     ],
     image: "/projects/dynamic-gif-generator.webp",
+    gallery: [
+      "/projects/dynamic-gif-generator-1.webp",
+      "/projects/dynamic-gif-generator-2.webp",
+      "/projects/dynamic-gif-generator-3.webp",
+      "/projects/dynamic-gif-generator-4.webp",
+    ],
     liveUrl: "https://dynamicgifgenerator.vercel.app",
     repoUrl: "https://github.com/m-Afnan2018/College-Minor-Project",
     featured: true,
@@ -146,6 +196,76 @@ navigator.geolocation.getCurrentPosition(async ({ coords }) => {
     },
   },
   {
+    slug: "flawsome",
+    title: "Flawsome",
+    tagline: "E-commerce store for handloom and designer sarees.",
+    description:
+      "A full-stack e-commerce site for a saree brand: a catalogue of handloom, Madhubani, Kantha and wedding sarees with detailed product pages, search and filters by category, colour and price. Customers get accounts, wishlists, a cart and order history, with product imagery served through Cloudinary.",
+    category: ["Full Stack"],
+    stack: ["React", "Node.js", "Express", "MongoDB", "Cloudinary"],
+    highlights: [
+      "Catalogue with search and filters by category, colour and price",
+      "Accounts with addresses, wishlist, cart and order history",
+      "Product media optimised and served through Cloudinary",
+    ],
+    image: "/projects/flawsome.webp",
+    gallery: [
+      "/projects/flawsome-1.webp",
+      "/projects/flawsome-2.webp",
+      "/projects/flawsome-3.webp",
+      "/projects/flawsome-4.webp",
+    ],
+    // flawsome.in no longer resolves — add liveUrl back if the store comes online again
+    repoUrl: "https://github.com/m-Afnan2018/Flawsome",
+    featured: true,
+    year: 2025,
+    role: "Client project — full-stack build",
+    challenge:
+      "Sarees sell on detail — weave, fabric, colour — so the store had to show a large, image-heavy catalogue clearly and still feel fast.",
+    approach: [
+      {
+        title: "Browse the way shoppers think",
+        body: "Collections, a most-popular rail and filters by category, colour and price, so customers narrow hundreds of sarees down quickly.",
+      },
+      {
+        title: "Images without the weight",
+        body: "Product photos live on Cloudinary and are delivered resized and compressed, keeping product pages sharp and quick.",
+      },
+      {
+        title: "A real customer account",
+        body: "Profiles, saved addresses, wishlist, cart and orders — everything a returning shopper expects.",
+      },
+    ],
+    outcome: "A complete storefront for the brand, from catalogue to checkout-ready cart.",
+  },
+  {
+    slug: "om-tara-foundation",
+    title: "Om Tara Foundation",
+    tagline: "Website for an NGO working with underprivileged communities.",
+    description:
+      "The website for Om Tara Foundation, an NGO based in Samastipur, Bihar. It presents the foundation's mission, initiatives and events, shows its impact in numbers, and gives visitors a way to get in touch, volunteer or donate.",
+    category: ["Frontend"],
+    stack: ["HTML", "CSS", "JavaScript", "Express"],
+    highlights: [
+      "Mission, initiatives and events in one clear story",
+      "Impact counters, contact form and newsletter sign-up",
+      "Donation flow so supporters can give directly",
+    ],
+    image: "/projects/om-tara-foundation.webp",
+    gallery: [
+      "/projects/om-tara-foundation-1.webp",
+      "/projects/om-tara-foundation-2.webp",
+      "/projects/om-tara-foundation-3.webp",
+      "/projects/om-tara-foundation-4.webp",
+    ],
+    liveUrl: "https://client-omega-cyan.vercel.app",
+    repoUrl: "https://github.com/m-Afnan2018/client",
+    year: 2025,
+    role: "Client project at Namaste Tech Solutions",
+    outcome:
+      "A trustworthy online home for the foundation that turns visitors into volunteers and donors.",
+  },
+  {
     // TODO: replace with a real project
     slug: "todo-saas-dashboard",
     title: "TODO: SaaS Dashboard",
@@ -156,7 +276,6 @@ navigator.geolocation.getCurrentPosition(async ({ coords }) => {
     stack: ["Next.js", "MongoDB", "Docker", "Nginx"],
     highlights: ["TODO: impact point one", "TODO: impact point two"],
     image: "/projects/todo-saas-dashboard.webp",
-    featured: true,
     year: 2025,
     placeholder: true,
     codeSnippet: {
@@ -178,7 +297,6 @@ export const requireRole =
     stack: ["Docker Compose", "Nginx", "Certbot", "GitHub Actions", "AWS"],
     highlights: ["TODO: deploy time / uptime number", "TODO: sites managed"],
     image: "/projects/todo-infra-pipeline.webp",
-    featured: true,
     year: 2025,
     placeholder: true,
     codeSnippet: {

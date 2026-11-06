@@ -32,15 +32,25 @@ export function Contact() {
     reset,
     setFocus,
     formState: { errors },
-  } = useForm<ContactInput>({ resolver: zodResolver(contactSchema), defaultValues: { name: "", email: "", message: "", company: "" } });
+  } = useForm<ContactInput>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: { name: "", email: "", message: "", company: "" },
+  });
 
   const onValid = (data: ContactInput) => {
     playSound("tick");
-    setLog([{ kind: "cmd", text: "./contact.sh --send" }, { kind: "out", text: "> POST /actions/contact … connecting to mail relay" }]);
+    setLog([
+      { kind: "cmd", text: "./contact.sh --send" },
+      { kind: "out", text: "> POST /actions/contact … connecting to mail relay" },
+    ]);
     startTransition(async () => {
       const res = await sendContact(data);
       if (res.ok) {
-        setLog((l) => [...l, { kind: "ok", text: copy.contact.success }, { kind: "out", text: `> I'll reply to ${data.email} soon.` }]);
+        setLog((l) => [
+          ...l,
+          { kind: "ok", text: copy.contact.success },
+          { kind: "out", text: `> I'll reply to ${data.email} soon.` },
+        ]);
         scrollState.pulse = 1;
         setSent(true);
         reset();
@@ -51,7 +61,10 @@ export function Contact() {
   };
   const onInvalid = () => {
     playSound("tick");
-    setLog([{ kind: "cmd", text: "./contact.sh --send" }, { kind: "err", text: "stderr: validation failed — fix the fields marked above" }]);
+    setLog([
+      { kind: "cmd", text: "./contact.sh --send" },
+      { kind: "err", text: "stderr: validation failed — fix the fields marked above" },
+    ]);
   };
   const submit = handleSubmit(onValid, onInvalid);
 
@@ -64,7 +77,8 @@ export function Contact() {
     }
   };
 
-  const field = "w-full bg-transparent text-text caret-primary outline-none placeholder:text-faint/60";
+  const field =
+    "w-full bg-transparent text-text caret-primary outline-none placeholder:text-faint/60";
   const row = "flex gap-3 border-b border-line/60 py-3 focus-within:border-primary/60";
 
   return (
@@ -72,15 +86,19 @@ export function Contact() {
       id="contact"
       data-scene="8"
       aria-labelledby="contact-title"
-      className="relative min-h-screen px-[5vw] pb-24 pt-24 lg:pl-[calc(5vw+60px)] xl:pr-[calc(5vw+56px)]"
+      className="relative min-h-screen px-[5vw] pt-24 pb-24 lg:pl-[calc(5vw+60px)] xl:pr-[calc(5vw+56px)]"
     >
-      <SectionHeading id="contact-title" eyebrow={copy.contact.eyebrow} parts={copy.contact.title} />
+      <SectionHeading
+        id="contact-title"
+        eyebrow={copy.contact.eyebrow}
+        parts={copy.contact.title}
+      />
       <p className="t-body mt-8 max-w-[52ch]">{copy.contact.lead}</p>
 
       <div className="mt-14 grid gap-10 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <div className="glass overflow-hidden rounded-[8px]">
-            <div className="flex items-center gap-3 border-b border-line px-4 py-2.5 font-mono text-xs text-faint">
+            <div className="border-line text-faint flex items-center gap-3 border-b px-4 py-2.5 font-mono text-xs">
               <span className="flex gap-1.5" aria-hidden>
                 <span className="h-2.5 w-2.5 rounded-full bg-[#f87171]/80" />
                 <span className="h-2.5 w-2.5 rounded-full bg-[#f59e0b]/80" />
@@ -88,11 +106,18 @@ export function Contact() {
               </span>
               visitor@afnan: ~/contact.sh
             </div>
-            <form ref={formRef} onSubmit={submit} noValidate className="px-5 pb-5 pt-2 font-mono text-[14px]">
-              <p className="py-2 text-faint"># fill the prompts — Enter to continue, Shift+Enter for a newline</p>
+            <form
+              ref={formRef}
+              onSubmit={submit}
+              noValidate
+              className="px-5 pt-2 pb-5 font-mono text-[14px]"
+            >
+              <p className="text-faint py-2">
+                # fill the prompts — Enter to continue, Shift+Enter for a newline
+              </p>
 
               <div className={row}>
-                <label htmlFor="c-name" className="shrink-0 text-accent">
+                <label htmlFor="c-name" className="text-accent shrink-0">
                   $ name:
                 </label>
                 <input
@@ -111,10 +136,14 @@ export function Contact() {
                   className={field}
                 />
               </div>
-              {errors.name && <p id="c-name-err" className="py-1 text-[13px] text-danger">stderr: {errors.name.message}</p>}
+              {errors.name && (
+                <p id="c-name-err" className="text-danger py-1 text-[13px]">
+                  stderr: {errors.name.message}
+                </p>
+              )}
 
               <div className={row}>
-                <label htmlFor="c-email" className="shrink-0 text-accent">
+                <label htmlFor="c-email" className="text-accent shrink-0">
                   $ email:
                 </label>
                 <input
@@ -134,10 +163,14 @@ export function Contact() {
                   className={field}
                 />
               </div>
-              {errors.email && <p id="c-email-err" className="py-1 text-[13px] text-danger">stderr: {errors.email.message}</p>}
+              {errors.email && (
+                <p id="c-email-err" className="text-danger py-1 text-[13px]">
+                  stderr: {errors.email.message}
+                </p>
+              )}
 
               <div className={cn(row, "items-start")}>
-                <label htmlFor="c-message" className="shrink-0 text-accent">
+                <label htmlFor="c-message" className="text-accent shrink-0">
                   $ message:
                 </label>
                 <textarea
@@ -156,22 +189,35 @@ export function Contact() {
                   className={cn(field, "resize-none")}
                 />
               </div>
-              {errors.message && <p id="c-message-err" className="py-1 text-[13px] text-danger">stderr: {errors.message.message}</p>}
+              {errors.message && (
+                <p id="c-message-err" className="text-danger py-1 text-[13px]">
+                  stderr: {errors.message.message}
+                </p>
+              )}
 
               {/* honeypot */}
-              <input type="text" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" {...register("company")} />
+              <input
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden
+                className="hidden"
+                {...register("company")}
+              />
 
               <div className="mt-5 flex flex-wrap items-center gap-4">
                 <Magnetic>
                   <button
                     type="submit"
                     disabled={pending}
-                    className="inline-flex items-center gap-2 rounded-[8px] bg-primary px-5 py-3 text-bg transition-colors hover:bg-text disabled:opacity-60"
+                    className="bg-primary text-bg hover:bg-text inline-flex items-center gap-2 rounded-[8px] px-5 py-3 transition-colors disabled:opacity-60"
                   >
-                    <span data-magnetic-inner>{pending ? "$ sending…" : sent ? "$ send --again" : "$ send"}</span>
+                    <span data-magnetic-inner>
+                      {pending ? "$ sending…" : sent ? "$ send --again" : "$ send"}
+                    </span>
                   </button>
                 </Magnetic>
-                <span className="text-xs text-faint">or press Enter in the message</span>
+                <span className="text-faint text-xs">or press Enter in the message</span>
               </div>
 
               <div aria-live="polite" className="mt-5 space-y-1 text-[13px]">
@@ -194,22 +240,32 @@ export function Contact() {
           </div>
         </div>
 
-        <aside className="space-y-8 font-mono text-sm lg:col-span-4 lg:col-start-9 lg:pt-4" aria-label="Other ways to reach me">
+        <aside
+          className="space-y-8 font-mono text-sm lg:col-span-4 lg:col-start-9 lg:pt-4"
+          aria-label="Other ways to reach me"
+        >
           <div>
             <p className="t-label mb-3">email</p>
             <button
               type="button"
               onClick={copyEmail}
               data-cursor="copy"
-              className="group flex items-center gap-3 break-all text-left text-[clamp(1rem,1.6vw,1.4rem)] text-text transition-colors hover:text-primary"
+              className="group text-text hover:text-primary flex items-center gap-3 text-left text-[clamp(1rem,1.6vw,1.4rem)] break-all transition-colors"
             >
               {profile.email}
-              <Icon name="copy" size={16} className="shrink-0 text-faint group-hover:text-primary" />
+              <Icon
+                name="copy"
+                size={16}
+                className="text-faint group-hover:text-primary shrink-0"
+              />
             </button>
           </div>
           <div>
             <p className="t-label mb-3">phone</p>
-            <a href={`tel:${profile.phone.replace(/\s/g, "")}`} className="text-text hover:text-primary">
+            <a
+              href={`tel:${profile.phone.replace(/\s/g, "")}`}
+              className="text-text hover:text-primary"
+            >
               {profile.phone}
             </a>
           </div>
@@ -219,19 +275,32 @@ export function Contact() {
               {[
                 { href: profile.links.github, label: "github", icon: "github" },
                 { href: profile.links.linkedin, label: "linkedin", icon: "linkedin" },
+                { href: profile.links.twitter, label: "x / twitter", icon: "x" },
+                { href: profile.links.instagram, label: "instagram", icon: "instagram" },
                 { href: profile.links.oldPortfolio, label: "portfolio v1", icon: "globe" },
               ].map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 text-muted transition-colors hover:text-text">
+                  <a
+                    href={l.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group text-muted hover:text-text inline-flex items-center gap-3 transition-colors"
+                  >
                     <Icon name={l.icon} size={16} />
                     {l.label}
-                    <span className="text-faint transition-transform group-hover:translate-x-1">↗</span>
+                    <span className="text-faint transition-transform group-hover:translate-x-1">
+                      ↗
+                    </span>
                   </a>
                 </li>
               ))}
             </ul>
           </div>
-          <a href={profile.resume} download className="hairline inline-flex items-center gap-3 rounded-[8px] px-4 py-3 text-text hover:border-primary hover:text-primary">
+          <a
+            href={profile.resume}
+            download
+            className="hairline text-text hover:border-primary hover:text-primary inline-flex items-center gap-3 rounded-[8px] px-4 py-3"
+          >
             <Icon name="download" size={16} /> $ download resume.pdf
           </a>
         </aside>

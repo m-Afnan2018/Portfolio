@@ -35,6 +35,8 @@ export const profile = {
     github: "https://github.com/m-Afnan2018",
     githubUser: "m-Afnan2018",
     linkedin: "https://www.linkedin.com/in/mafnan2018",
+    twitter: "https://x.com/m_Afnan2018",
+    instagram: "https://www.instagram.com/m.afnan2018",
     oldPortfolio: "https://mafnan2018.netlify.app/",
     // TODO: point this to the repo that hosts this site
     source: "https://github.com/m-Afnan2018",
