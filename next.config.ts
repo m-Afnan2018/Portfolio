@@ -1,18 +1,43 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  reactCompiler: true,
+  // Standalone output → tiny Docker image (see Dockerfile).
+  output: "standalone",
+  cacheComponents: true,
+  partialPrefetching: true,
+  reactStrictMode: true,
+  poweredByHeader: false,
+  turbopack: {
+    rules: {
+      "*.css": {
+        loaders: ["@tailwindcss/turbopack"],
+        as: "*.css",
+      },
+      // GLSL shaders are imported as plain strings.
+      "*.glsl": {
+        type: "raw",
+      },
+    },
+  },
   images: {
-    remotePatterns: [
+    formats: ["image/avif", "image/webp"],
+  },
+  async headers() {
+    return [
       {
-        protocol: "https",
-        hostname: "images.unsplash.com",
+        source: "/(.*)",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+        ],
       },
       {
-        protocol: "https",
-        hostname: "plus.unsplash.com",
+        source: "/detect-gpu/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
-    ],
+    ];
   },
 };
 

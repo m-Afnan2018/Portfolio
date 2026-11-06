@@ -1,0 +1,252 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   /hr — "recruiter brief". A calm paper dossier, independent of the main
+   site's [data-theme] tokens so it always reads the same and prints well.
+   ───────────────────────────────────────────────────────────────────────── */
+
+html:has(.hr-root) {
+  background: #ffffff;
+  color-scheme: light;
+  /* top-bar jump links land below the sticky header */
+  scroll-padding-top: 5rem;
+}
+html:has(.hr-root) body {
+  background: #ffffff;
+}
+
+.hr-root {
+  --hr-paper: #ffffff;
+  --hr-card: #fafafa;
+  --hr-ink: #15171c;
+  --hr-ink-2: #3a3e47;
+  --hr-muted: #6b6f78;
+  --hr-rule: #e6e6e6;
+  --hr-rule-strong: #d0d0d0;
+  /* an ink blue, deep enough to sit on warm paper without reading as SaaS */
+  --hr-accent: #2447c4;
+  --hr-accent-soft: #e7eaf4;
+  --hr-ok: #1d7a46;
+  --hr-ok-soft: #e3f2e8;
+
+  min-height: 100vh;
+  background: var(--hr-paper);
+  color: var(--hr-ink);
+  font-family: var(--font-hr-body), system-ui, sans-serif;
+  font-feature-settings: "cv11", "ss01";
+}
+.hr-root ::selection {
+  background: var(--hr-accent);
+  color: #fff;
+}
+.hr-root :focus-visible {
+  outline: 2px solid var(--hr-accent);
+  outline-offset: 3px;
+  box-shadow: none;
+  border-radius: 6px;
+}
+
+.hr-display {
+  font-family: var(--font-hr-display), var(--font-hr-body), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.hr-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hr-muted);
+}
+
+.hr-card {
+  background: var(--hr-card);
+  border: 1px solid var(--hr-rule);
+  border-radius: 14px;
+}
+
+.hr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 44px;
+  padding: 0 1.1rem;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s,
+    transform 0.2s;
+  white-space: nowrap;
+}
+.hr-btn:active {
+  transform: translateY(1px);
+}
+.hr-btn-primary {
+  background: var(--hr-ink);
+  color: #fff;
+}
+.hr-btn-primary:hover {
+  background: var(--hr-accent);
+}
+.hr-btn-ghost {
+  border: 1px solid var(--hr-rule-strong);
+  color: var(--hr-ink);
+  background: transparent;
+}
+.hr-btn-ghost:hover {
+  border-color: var(--hr-ink);
+}
+
+.hr-link {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s;
+}
+.hr-link:hover {
+  background-size: 100% 1px;
+}
+
+/* section heading: title left, quiet index right, one hairline under both */
+.hr-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--hr-ink);
+}
+.hr-head .hr-label {
+  font-variant-numeric: tabular-nums;
+}
+
+/* identity monogram: the brand strokes in ink on a paper tile */
+.hr-mono {
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--hr-rule-strong);
+  border-radius: 16px;
+  background: var(--hr-paper);
+  color: var(--hr-ink);
+}
+
+/* top-bar section links */
+.hr-nav a {
+  color: var(--hr-muted);
+  transition: color 0.2s;
+}
+.hr-nav a:hover {
+  color: var(--hr-ink);
+}
+
+/* gentle reveal on scroll — pure CSS, skipped where unsupported or reduced */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hr-reveal {
+      animation: hr-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+@keyframes hr-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hr-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+.hr-pulse {
+  animation: hr-pulse 1.8s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hr-pulse {
+    animation: none;
+  }
+}
+
+/* ── print: the brief doubles as a one-click PDF ───────────────────────── */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+  html:has(.hr-root),
+  html:has(.hr-root) body,
+  .hr-root {
+    background: #fff !important;
+  }
+  .hr-noprint {
+    display: none !important;
+  }
+  .hr-aside {
+    position: static !important;
+  }
+  .hr-card,
+  .hr-avoid {
+    break-inside: avoid;
+  }
+  .hr-reveal {
+    animation: none !important;
+  }
+
+  /* paper spacing, not screen spacing; screen type sizes read large on A4 */
+  .hr-root {
+    zoom: 0.86;
+  }
+  .hr-page {
+    padding: 0 !important;
+    gap: 1.75rem !important;
+  }
+  .hr-main > * {
+    margin-block: 0 !important;
+  }
+  .hr-main > * + * {
+    margin-top: 2.25rem !important;
+  }
+  .hr-head {
+    margin-bottom: 1.1rem;
+  }
+
+  /* never strand a heading at the foot of a page */
+  .hr-head,
+  .hr-label,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  /* the page is narrower than "md", but three columns still fit on A4 */
+  .hr-strengths {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .hr-strengths > * {
+    border-width: 0 0 0 1px !important;
+    padding: 0 1rem !important;
+  }
+  .hr-strengths > :first-child {
+    border-left-width: 0 !important;
+    padding-left: 0 !important;
+  }
+  .hr-strengths > :last-child {
+    padding-right: 0 !important;
+  }
+}
