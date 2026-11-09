@@ -160,6 +160,15 @@ export function BranchSwitcher() {
     if (b.id !== "dev") set({ checkout: b.id as "hr" | "client" });
   };
 
+  // warm the other versions up front so the route change itself is instant
+  useEffect(() => {
+    BRANCHES.forEach((b) => b.href !== "/" && router.prefetch(b.href));
+  }, [router]);
+
+  // the store outlives this page: leaving clears the checkout, so coming back
+  // to "/" doesn't replay it (or keep the 3D scene paused)
+  useEffect(() => () => set({ checkout: null, branchOpen: false }), [set]);
+
   useEffect(() => {
     if (open) setTimeout(() => input.current?.focus(), 30);
   }, [open]);
@@ -176,14 +185,14 @@ export function BranchSwitcher() {
     }
     playSound("whoosh");
     const t = [
-      setTimeout(() => setLines(2), 800),
-      setTimeout(() => setLines(3), 1100),
-      setTimeout(() => setLines(4), 1400),
-      setTimeout(() => setWipe(true), 1600),
+      setTimeout(() => setLines(2), 650),
+      setTimeout(() => setLines(3), 900),
+      setTimeout(() => setLines(4), 1150),
+      setTimeout(() => setWipe(true), 1300),
       setTimeout(() => {
         handoffTo(b.id);
         router.push(b.href);
-      }, 2300),
+      }, 1950),
     ];
     return () => t.forEach(clearTimeout);
   }, [checkout, router]);
@@ -206,7 +215,7 @@ export function BranchSwitcher() {
               type="button"
               aria-label="Close"
               onClick={close}
-              className="bg-bg/50 absolute inset-0 backdrop-blur-[2px]"
+              className="bg-bg/75 absolute inset-0"
             />
             <motion.div
               role="dialog"
@@ -319,7 +328,7 @@ export function BranchSwitcher() {
             transition={{ duration: 0.2 }}
             aria-live="polite"
           >
-            <div className="bg-bg/70 absolute inset-0 backdrop-blur-sm" />
+            <div className="bg-bg/85 absolute inset-0" />
             <motion.div
               initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -356,10 +365,10 @@ export function BranchSwitcher() {
             {/* the next version's colour wipes up */}
             <motion.div
               className="absolute inset-0"
-              style={{ background: target.wipe }}
-              initial={{ clipPath: "inset(100% 0 0 0)" }}
-              animate={{ clipPath: wipe ? "inset(0% 0 0 0)" : "inset(100% 0 0 0)" }}
-              transition={{ duration: 0.7, ease: ease.inOutBezier }}
+              style={{ background: target.wipe, willChange: "transform" }}
+              initial={{ y: "100%" }}
+              animate={{ y: wipe ? "0%" : "100%" }}
+              transition={{ duration: 0.6, ease: ease.inOutBezier }}
             />
           </motion.div>
         )}

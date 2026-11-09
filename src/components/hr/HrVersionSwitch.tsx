@@ -116,6 +116,10 @@ export function HrVersionSwitch() {
   const root = useRef<HTMLDivElement>(null);
   usePersonaMark("hr");
 
+  useEffect(() => {
+    DOCS.forEach((d) => d.id !== "hr" && router.prefetch(d.href));
+  }, [router]);
+
   // close on outside click / Esc
   useEffect(() => {
     if (!open) return;
@@ -154,16 +158,11 @@ export function HrVersionSwitch() {
         zIndex: "2",
         transformOrigin: `50% ${y}`,
         backfaceVisibility: "hidden",
+        willChange: "transform",
       });
       page.animate(
-        [
-          { transform: "rotateX(0deg)", filter: "brightness(1)", boxShadow: "0 0 0 rgba(0,0,0,0)" },
-          {
-            transform: "rotateX(-100deg)",
-            filter: "brightness(0.82)",
-            boxShadow: "0 60px 120px rgba(0,0,0,0.45)",
-          },
-        ],
+        // transform only: filter / box-shadow on the whole page repaint every frame
+        [{ transform: "rotateX(0deg)" }, { transform: "rotateX(-100deg)" }],
         { duration: 1000, delay: 80, easing: "cubic-bezier(0.65, 0, 0.35, 1)", fill: "forwards" },
       );
     }

@@ -49,8 +49,15 @@ export function releaseHandoff() {
   if (!el || el.dataset.out) return;
   el.dataset.out = "1";
   const wait = Math.max(0, MIN_MS - (Date.now() - Number(el.dataset.t)));
+  // lift it once the arriving page has settled (hydration, shader compile),
+  // so the exit animation doesn't fight the main thread
   setTimeout(() => {
-    el.classList.add("bh-out");
-    setTimeout(() => el.remove(), 900);
+    const lift = () =>
+      requestAnimationFrame(() => {
+        el.classList.add("bh-out");
+        setTimeout(() => el.remove(), 900);
+      });
+    if ("requestIdleCallback" in window) requestIdleCallback(lift, { timeout: 600 });
+    else setTimeout(lift, 50);
   }, wait);
 }

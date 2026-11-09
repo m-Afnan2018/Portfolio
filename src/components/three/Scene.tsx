@@ -39,6 +39,8 @@ export default function Scene() {
   const gpuTier = useScrollStore((s) => s.gpuTier);
   const isMobile = useScrollStore((s) => s.isMobile);
   const reduced = useReducedMotionFlag();
+  // a version switch is playing over the canvas: stop rendering, free the GPU for it
+  const leaving = useScrollStore((s) => s.checkout !== null);
   const stacked = useSyncExternalStore(subscribeStacked, getStacked, () => false);
   const [visible, setVisible] = useState(true);
   // Scene is client-only (next/dynamic, ssr:false) and mounts after #app-root exists.
@@ -70,7 +72,7 @@ export default function Scene() {
       aria-hidden
       eventSource={eventSource}
       eventPrefix="client"
-      frameloop={visible ? "always" : "never"}
+      frameloop={visible && !leaving ? "always" : "never"}
       dpr={[1, lowTier ? 1.25 : 1.75]}
       camera={{ position: [0, 0, 8], fov: 40, near: 0.1, far: 100 }}
       gl={{ antialias: false, alpha: false, powerPreference: "high-performance", stencil: false }}

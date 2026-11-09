@@ -74,7 +74,7 @@ export function ClientVersionSwitch() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [hover, setHover] = useState<number | null>(null);
-  const [going, setGoing] = useState<{ row: Row; x: number; y: number } | null>(null);
+  const [going, setGoing] = useState<{ row: Row; x: number; y: number; r: number } | null>(null);
   const [host, setHost] = useState<Element | null>(null);
   usePersonaMark("client");
 
@@ -83,6 +83,10 @@ export function ClientVersionSwitch() {
   const my = useMotionValue(0);
   const px = useSpring(mx, { stiffness: 220, damping: 26 });
   const py = useSpring(my, { stiffness: 220, damping: 26 });
+
+  useEffect(() => {
+    ROWS.forEach((r) => r.id !== "client" && router.prefetch(r.href));
+  }, [router]);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -116,7 +120,10 @@ export function ClientVersionSwitch() {
       router.push(row.href);
       return;
     }
-    setGoing({ row, x: e.clientX, y: e.clientY });
+    const { clientX: x, clientY: y } = e;
+    // radius that reaches the farthest corner from the click
+    const r = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 2;
+    setGoing({ row, x, y, r });
     setTimeout(() => {
       handoffTo(row.id);
       router.push(row.href);
@@ -155,9 +162,10 @@ export function ClientVersionSwitch() {
                   aria-label="Choose your version of this site"
                   data-lenis-prevent
                   className="fixed inset-0 z-[80] flex flex-col overflow-y-auto bg-[var(--cl-ink)] text-white"
-                  initial={{ clipPath: "inset(0 0 100% 0)" }}
-                  animate={{ clipPath: "inset(0 0 0% 0)" }}
-                  exit={{ clipPath: "inset(0 0 100% 0)" }}
+                  style={{ willChange: "transform" }}
+                  initial={{ y: "-100%" }}
+                  animate={{ y: "0%" }}
+                  exit={{ y: "-100%" }}
                   transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
                   onPointerMove={(e) => {
                     mx.set(e.clientX);
@@ -170,7 +178,6 @@ export function ClientVersionSwitch() {
                       style={{ "--glow": "#2563eb" } as CSSProperties}
                     />
                     <div className="cl-hero-grid absolute inset-0 opacity-50" />
-                    <div className="cl-grain" />
                   </div>
 
                   <div className="relative mx-auto flex w-full max-w-[1320px] items-center justify-between px-5 pt-6 sm:px-8">
@@ -277,10 +284,17 @@ export function ClientVersionSwitch() {
             {/* ── circle reveal into the next version ── */}
             {going && (
               <motion.div
-                className="fixed inset-0 z-[110]"
-                style={{ background: going.row.color }}
-                initial={{ clipPath: `circle(0px at ${going.x}px ${going.y}px)` }}
-                animate={{ clipPath: `circle(150vmax at ${going.x}px ${going.y}px)` }}
+                className="pointer-events-none fixed z-[110] rounded-full"
+                style={{
+                  background: going.row.color,
+                  left: going.x - going.r,
+                  top: going.y - going.r,
+                  width: going.r * 2,
+                  height: going.r * 2,
+                  willChange: "transform",
+                }}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
                 transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
               />
             )}
